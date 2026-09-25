@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { SplitHeading } from "@/components/motion/split-heading";
+import { SpotlightGroup } from "@/components/motion/spotlight";
 import { getService } from "@/content/services";
 import { cn } from "@/lib/utils";
 
@@ -50,20 +52,21 @@ const cells: Cell[] = [
 export function SolutionsBento() {
   return (
     <section aria-labelledby="solutions-heading" className="shell py-20 md:py-28">
-      <h2 id="solutions-heading" className="display max-w-[16ch] text-[clamp(2.75rem,6vw,5.5rem)]">
+      <SplitHeading id="solutions-heading" className="display max-w-[16ch] text-[clamp(2.75rem,6vw,5.5rem)]">
         One team for the whole funnel.
-      </h2>
+      </SplitHeading>
       <p className="mt-5 max-w-[52ch] text-lg text-muted">
         Start with one program or run them together. Signal intent feeds every channel, so each touch builds on the last.
       </p>
 
+      <SpotlightGroup>
       <RevealGroup className="mt-12 grid grid-cols-1 gap-3 md:grid-cols-2 lg:auto-rows-[minmax(13rem,auto)] lg:grid-cols-6">
         {cells.map((c) => (
           <RevealItem key={c.href} className={cn("md:col-span-1", c.className)}>
             <Link
               href={c.href}
               className={cn(
-                "group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 ring-1 transition-[box-shadow,transform] duration-500 ease-out-expo hover:-translate-y-0.5 md:p-7",
+                "spotlight group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 ring-1 transition-[box-shadow,transform] duration-500 ease-out-expo hover:-translate-y-0.5 md:p-7",
                 c.tone === "signal" && "bg-signal text-on-signal ring-transparent",
                 c.tone === "plain" && "bg-raise ring-line hover:ring-fg/25",
                 c.tone === "image" && "bg-raise text-[#f4f4ef] ring-line",
@@ -103,6 +106,7 @@ export function SolutionsBento() {
           </RevealItem>
         ))}
       </RevealGroup>
+      </SpotlightGroup>
     </section>
   );
 }

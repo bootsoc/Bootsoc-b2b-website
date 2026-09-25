@@ -4,7 +4,8 @@ import { PageHero } from "@/components/sections/page-hero";
 import { Metrics } from "@/components/sections/metrics";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { CtaBand } from "@/components/sections/cta-band";
-import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { RevealImage } from "@/components/motion/reveal-image";
 import { secondaryMetrics, site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -43,11 +44,11 @@ export default function AboutPage() {
       />
 
       <section aria-label="Team" className="shell">
-        <Reveal className="rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line">
-          <div className="relative aspect-[16/9] overflow-hidden rounded-[calc(2rem-6px)] md:aspect-[21/9]">
+        <RevealImage className="rounded-[1.5rem]">
+          <div className="relative aspect-[16/9] md:aspect-[21/9]">
             <Image src="/images/team-collab.jpg" alt="Members of the BootSoc team collaborating around a laptop" fill sizes="100vw" className="object-cover object-[center_35%]" />
           </div>
-        </Reveal>
+        </RevealImage>
       </section>
 
       <Metrics />

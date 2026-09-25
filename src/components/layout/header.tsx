@@ -19,6 +19,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
   const menuId = useId();
   const megaId = useId();
   const megaRef = useRef<HTMLLIElement>(null);
@@ -70,7 +71,7 @@ export function Header() {
       >
         Skip to content
       </a>
-      <header className="fixed inset-x-0 top-0 z-50 pt-3 md:pt-4">
+      <header className="fixed inset-x-0 top-0 z-50 pt-3 md:pt-4" style={{ viewTransitionName: "site-header" }}>
         <div className="shell">
           <div
             className={cn(
@@ -85,15 +86,16 @@ export function Header() {
             </Link>
 
             <nav aria-label="Primary" className="hidden xl:block">
-              <ul className="flex items-center gap-1">
-                <li className="relative" ref={megaRef}>
+              <ul className="flex items-center gap-1" onPointerLeave={() => setHovered(null)}>
+                <li className="relative" ref={megaRef} onPointerEnter={() => setHovered("solutions")}>
+                  <NavPill show={hovered === "solutions"} reduce={reduce} />
                   <button
                     type="button"
                     aria-expanded={solutionsOpen}
                     aria-controls={megaId}
                     onClick={() => setSolutionsOpen((v) => !v)}
                     className={cn(
-                      "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm transition-colors hover:bg-raise",
+                      "relative flex items-center gap-1.5 rounded-full px-4 py-2 text-sm transition-colors",
                       isActive("/solutions") ? "text-fg" : "text-muted hover:text-fg",
                     )}
                   >
@@ -151,12 +153,13 @@ export function Header() {
                   </AnimatePresence>
                 </li>
                 {primaryNav.slice(1).map((item) => (
-                  <li key={item.href}>
+                  <li key={item.href} className="relative" onPointerEnter={() => setHovered(item.href)}>
+                    <NavPill show={hovered === item.href} reduce={reduce} />
                     <Link
                       href={item.href}
                       aria-current={isActive(item.href) ? "page" : undefined}
                       className={cn(
-                        "whitespace-nowrap rounded-full px-4 py-2 text-sm transition-colors hover:bg-raise",
+                        "relative block whitespace-nowrap rounded-full px-4 py-2 text-sm transition-colors",
                         isActive(item.href) ? "text-fg" : "text-muted hover:text-fg",
                       )}
                     >
@@ -258,5 +261,18 @@ export function Header() {
         )}
       </AnimatePresence>
     </>
+  );
+}
+
+/** Shared hover pill that glides between nav items (Motion layoutId). */
+function NavPill({ show, reduce }: { show: boolean; reduce: boolean | null }) {
+  if (!show) return null;
+  return (
+    <motion.span
+      layoutId="nav-pill"
+      aria-hidden="true"
+      className="absolute inset-0 rounded-full bg-raise ring-1 ring-line"
+      transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 420, damping: 34, mass: 0.6 }}
+    />
   );
 }

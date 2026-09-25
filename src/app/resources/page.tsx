@@ -26,7 +26,16 @@ export default async function ResourcesPage() {
         title="Notes from the demand floor."
         lede="Practical guides on verified leads, intent data and staying compliant across the US, UK and Canada."
         crumbs={[{ label: "Resources", href: "/resources" }]}
-      />
+      >
+        <div className="flex flex-wrap gap-3">
+          <Link href="/glossary" className="inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium ring-1 ring-line hover:bg-raise">
+            Browse the glossary
+          </Link>
+          <Link href="/audience-estimator" className="inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium ring-1 ring-line hover:bg-raise">
+            Audience and pipeline calculators
+          </Link>
+        </div>
+      </PageHero>
       <section aria-label="Articles" className="shell pb-16">
         {posts.length === 0 ? (
           <p className="text-muted">New articles are on the way. Subscribe below to get them first.</p>

@@ -6,6 +6,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { Faq } from "@/components/sections/faq";
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { site } from "@/content/site";
+import { Certifications } from "@/components/sections/certifications";
 
 export const metadata: Metadata = {
   title: "Data and trust center",
@@ -65,7 +66,7 @@ const basis = [
 const controls = [
   { icon: ProhibitIcon, title: "Global suppression", body: "Every opt-out joins a global suppression list checked before each send and each delivery, across all clients." },
   { icon: ShieldCheckIcon, title: "No sensitive data", body: "We don't collect or infer health, financial account, precise location, children's or other sensitive personal data." },
-  { icon: LockKeyIcon, title: "Security by default", body: "Encryption in transit and at rest, least-privilege access, audit logging and signed data processing terms with every vendor." },
+  { icon: LockKeyIcon, title: "Security by default", body: "ISO/IEC 27001 certified and SOC 2 Type II audited: encryption in transit and at rest, least-privilege access, audit logging and signed data processing terms with every vendor." },
 ];
 
 const faqs = [
@@ -76,6 +77,10 @@ const faqs = [
   {
     q: "How do I stop BootSoc from contacting me?",
     a: "Use the unsubscribe link in any email, tell our caller, or submit an “unsubscribe” request. Your address joins our global suppression list, and we stop contact within 10 business days at the latest.",
+  },
+  {
+    q: "Can we see your SOC 2 report or ISO certificates?",
+    a: "Yes. We hold ISO/IEC 27001, ISO 9001 and SOC 2 Type II. Email privacy@bootsoc.com and we'll share the SOC 2 Type II report and certificates under NDA for your vendor review.",
   },
   {
     q: "Is BootSoc a data broker?",
@@ -95,6 +100,8 @@ export default function TrustPage() {
         lede="Intent data is only useful if you can trust it. Here's exactly how we source, verify and protect business contact data, and how anyone can opt out."
         crumbs={[{ label: "Data and trust", href: "/trust" }]}
       />
+
+      <Certifications variant="trust" />
 
       <section aria-labelledby="sources-heading" className="shell py-16 md:py-24">
         <h2 id="sources-heading" className="display max-w-[14ch] text-[clamp(2.5rem,5vw,4.5rem)]">

@@ -48,3 +48,32 @@ export async function getPost(slug: string): Promise<Post | null> {
 export async function getJobs(): Promise<Job[]> {
   return (await sanityFetch<Job[]>(groq`*[_type == "job" && open == true] | order(_createdAt desc){_id, title, team, location, type, summary}`, {}, ["job"])) ?? [];
 }
+
+export type CaseStudy = {
+  slug: string;
+  title: string;
+  client?: string;
+  service?: string;
+  summary?: string;
+  results?: { value: string; label: string }[];
+  body?: PortableTextBlock[];
+};
+
+/** Only case studies the client has approved for publication. */
+export async function getCaseStudies(): Promise<CaseStudy[]> {
+  return (
+    (await sanityFetch<CaseStudy[]>(
+      groq`*[_type == "caseStudy" && clientApproved == true && defined(slug.current)] | order(_createdAt desc){"slug": slug.current, title, client, service, summary, results}`,
+      {},
+      ["caseStudy"],
+    )) ?? []
+  );
+}
+
+export async function getCaseStudy(slug: string): Promise<CaseStudy | null> {
+  return sanityFetch<CaseStudy>(
+    groq`*[_type == "caseStudy" && clientApproved == true && slug.current == $slug][0]{"slug": slug.current, title, client, service, summary, results, body}`,
+    { slug },
+    ["caseStudy"],
+  );
+}

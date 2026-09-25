@@ -34,6 +34,7 @@ const sections: LegalSection[] = [
           <li>PIPEDA and Quebec Law 25 obligations, including safeguards for transfers outside Quebec</li>
           <li>International transfer mechanisms: UK IDTA / Addendum and EU Standard Contractual Clauses</li>
           <li>Breach notification without undue delay, and deletion or return of data at the end of a program</li>
+          <li>Security measures aligned to our ISO/IEC 27001 certification and SOC 2 Type II controls</li>
         </ul>
         <p>
           Clients can request a pre-signed copy by emailing <a href={`mailto:${site.privacyEmail}`}>{site.privacyEmail}</a>.

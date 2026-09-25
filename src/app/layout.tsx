@@ -7,7 +7,8 @@ import { Footer } from "@/components/layout/footer";
 import { themeScript } from "@/components/layout/theme-toggle";
 import { ConsentManager } from "@/components/consent/consent-manager";
 import { JsonLd } from "@/components/seo/json-ld";
-import { site } from "@/content/site";
+import { ScrollProgress } from "@/components/motion/scroll-progress";
+import { certifications, site } from "@/content/site";
 import "./globals.css";
 
 const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
@@ -76,8 +77,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             },
             areaServed: ["US", "GB", "CA"],
             sameAs: [site.social.linkedin, site.publisher.url],
+            hasCertification: certifications.map((c) => ({ "@type": "Certification", name: c.name })),
           }}
         />
+        <ScrollProgress />
         <Header />
         <main id="main" tabIndex={-1} className="outline-none">
           {children}

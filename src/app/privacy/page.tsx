@@ -266,8 +266,8 @@ const sections: LegalSection[] = [
     title: "How we protect it",
     body: (
       <p>
-        We use encryption in transit and at rest, role-based access controls, multi-factor authentication, logging and vendor due
-        diligence. No system is perfectly secure, so we also maintain an incident response process and will notify you and regulators of
+        Our information security program is certified to ISO/IEC 27001 and independently audited under SOC 2 Type II. Controls include
+        encryption in transit and at rest, role-based access controls, multi-factor authentication, logging and vendor due diligence. No system is perfectly secure, so we also maintain an incident response process and will notify you and regulators of
         a breach where the law requires.
       </p>
     ),

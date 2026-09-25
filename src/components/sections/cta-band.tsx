@@ -1,6 +1,7 @@
 import { ButtonLink } from "@/components/ui/button";
 import { Mark } from "@/components/brand/logo";
 import { Reveal } from "@/components/motion/reveal";
+import { Magnetic } from "@/components/motion/magnetic";
 
 export function CtaBand({
   title = "Let's plan next quarter's pipeline.",
@@ -21,6 +22,7 @@ export function CtaBand({
             <p className="mt-6 max-w-[48ch] text-lg text-on-signal/80">{body}</p>
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">
+            <Magnetic>
             <ButtonLink
               href="/contact"
               icon
@@ -28,6 +30,7 @@ export function CtaBand({
             >
               Book a strategy call
             </ButtonLink>
+            </Magnetic>
           </div>
         </div>
       </Reveal>

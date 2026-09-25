@@ -1,5 +1,6 @@
 import { PlusIcon } from "@phosphor-icons/react/dist/ssr";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SplitHeading } from "@/components/motion/split-heading";
 import type { Faq as FaqItem } from "@/content/services";
 
 /** Native <details> accordion: keyboard and screen-reader friendly with zero JS. Emits FAQPage schema. */
@@ -14,9 +15,9 @@ export function Faq({ items, title = "Questions buyers ask us", id = "faq" }: { 
         }}
       />
       <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <h2 id={`${id}-heading`} className="display max-w-[12ch] text-[clamp(2.5rem,5vw,4.5rem)]">
+        <SplitHeading id={`${id}-heading`} className="display max-w-[12ch] text-[clamp(2.5rem,5vw,4.5rem)] lg:sticky lg:top-32 lg:self-start">
           {title}
-        </h2>
+        </SplitHeading>
         <div className="divide-y divide-line border-y border-line">
           {items.map((f) => (
             <details key={f.q} className="group">

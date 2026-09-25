@@ -4,6 +4,9 @@ import { PageHero } from "@/components/sections/page-hero";
 import { VerificationPipeline } from "@/components/sections/verification-pipeline";
 import { CtaBand } from "@/components/sections/cta-band";
 import { Reveal } from "@/components/motion/reveal";
+import { RevealImage } from "@/components/motion/reveal-image";
+import { SpotlightGroup } from "@/components/motion/spotlight";
+import { Integrations } from "@/components/sections/integrations";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -58,10 +61,11 @@ export default function HowItWorksPage() {
         <h2 id="phases-heading" className="sr-only">
           The six phases
         </h2>
+        <SpotlightGroup>
         <ol className="grid gap-3">
           {phases.map((p, i) => (
             <li key={p.title}>
-              <Reveal delay={i * 0.03} className="grid gap-6 rounded-[1.5rem] p-6 ring-1 ring-line md:grid-cols-[6rem_1fr_8rem] md:items-baseline md:p-8">
+              <Reveal delay={i * 0.03} className="spotlight grid gap-6 rounded-[1.5rem] p-6 ring-1 ring-line md:grid-cols-[6rem_1fr_8rem] md:items-baseline md:p-8">
                 <span className="display tabular text-6xl text-signal [[data-theme=light]_&]:text-fg" aria-hidden="true">
                   {i + 1}
                 </span>
@@ -74,17 +78,20 @@ export default function HowItWorksPage() {
             </li>
           ))}
         </ol>
+        </SpotlightGroup>
       </section>
 
       <VerificationPipeline />
 
+      <Integrations />
+
       <section aria-labelledby="team-heading" className="shell py-20 md:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <Reveal className="rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)]">
+          <RevealImage className="rounded-[1.5rem]">
+            <div className="relative aspect-[4/3]">
               <Image src="/images/process-desk.jpg" alt="A BootSoc analyst reviewing lead records at a desk" fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
             </div>
-          </Reveal>
+          </RevealImage>
           <div>
             <h2 id="team-heading" className="display max-w-[14ch] text-[clamp(2.5rem,5vw,4.5rem)]">
               People check what software can&apos;t.

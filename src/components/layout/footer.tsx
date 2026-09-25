@@ -47,6 +47,15 @@ export function Footer() {
         </div>
 
         <div className="mt-16 grid gap-6 border-t border-line pt-8 text-sm text-muted md:grid-cols-[1fr_auto] md:items-end">
+          <div className="md:col-span-2">
+            <ul aria-label="Certifications and compliance frameworks" className="flex flex-wrap gap-2">
+              {["ISO/IEC 27001", "ISO 9001", "SOC 2 Type II", "CCPA / CPRA", "UK GDPR", "PECR", "CASL", "PIPEDA", "Law 25", "CAN-SPAM", "GPC honored"].map((c) => (
+                <li key={c} className="rounded-full px-3 py-1 text-xs ring-1 ring-line">
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
           <address className="not-italic leading-relaxed">
             {site.legalName}
             <br />

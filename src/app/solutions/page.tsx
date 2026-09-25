@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { ViewTransition } from "react";
 import Link from "next/link";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { PageHero } from "@/components/sections/page-hero";
@@ -40,6 +41,7 @@ export default function SolutionsPage() {
                 href={`/solutions/${s.slug}`}
                 className="group grid items-center gap-6 rounded-[1.5rem] bg-raise p-4 ring-1 ring-line transition-[box-shadow] hover:ring-fg/30 md:grid-cols-[14rem_1fr_auto] md:p-5"
               >
+                <ViewTransition name={`svc-${s.slug}`} share="morph" default="none">
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[calc(1.5rem-8px)]">
                   <Image
                     src={s.image}
@@ -49,6 +51,7 @@ export default function SolutionsPage() {
                     className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
                   />
                 </div>
+                </ViewTransition>
                 <div className="px-2 md:px-0">
                   <p className="text-sm text-muted">{stage[s.slug]}</p>
                   <h2 className="display-md mt-1 text-3xl md:text-4xl">{s.product ?? s.name}</h2>

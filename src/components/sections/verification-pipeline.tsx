@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { CheckIcon } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
+import { SplitHeading } from "@/components/motion/split-heading";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -81,9 +82,9 @@ export function VerificationPipeline() {
     <section ref={root} aria-labelledby="pipeline-heading" className="relative">
       <div ref={pin} className="shell grid gap-12 py-20 lg:min-h-[100dvh] lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-20 lg:py-24">
         <div>
-          <h2 id="pipeline-heading" className="display max-w-[14ch] text-[clamp(2.75rem,5.5vw,5rem)]">
+          <SplitHeading id="pipeline-heading" className="display max-w-[14ch] text-[clamp(2.75rem,5.5vw,5rem)]">
             Five checks before a lead reaches you.
-          </h2>
+          </SplitHeading>
           <ol className="relative mt-10 grid gap-1">
             <span aria-hidden="true" className="absolute bottom-4 left-[1.1rem] top-4 w-px bg-line" />
             <span

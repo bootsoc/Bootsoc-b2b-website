@@ -13,6 +13,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ["/audience-estimator", 0.8],
     ["/network", 0.7],
     ["/resources", 0.7],
+    ["/glossary", 0.6],
+    ["/case-studies", 0.5],
     ["/about", 0.6],
     ["/careers", 0.5],
     ["/contact", 0.7],

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ViewTransition } from "react";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { absoluteUrl } from "@/lib/utils";
@@ -11,6 +12,7 @@ export function PageHero({
   crumbs = [],
   image,
   imageAlt = "",
+  imageTransitionName,
   eyebrow,
   children,
 }: {
@@ -19,6 +21,8 @@ export function PageHero({
   crumbs?: Crumb[];
   image?: string;
   imageAlt?: string;
+  /** Shared-element name so a matching thumbnail can morph into this image during navigation. */
+  imageTransitionName?: string;
   eyebrow?: string;
   children?: React.ReactNode;
 }) {
@@ -82,9 +86,17 @@ export function PageHero({
           </div>
           {image && (
             <div className="animate-settle rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line" style={{ animationDelay: "150ms" }}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)]">
-                <Image src={image} alt={imageAlt} fill priority sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
-              </div>
+              {imageTransitionName ? (
+                <ViewTransition name={imageTransitionName} share="morph" default="none">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)]">
+                    <Image src={image} alt={imageAlt} fill priority sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+                  </div>
+                </ViewTransition>
+              ) : (
+                <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)]">
+                  <Image src={image} alt={imageAlt} fill priority sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+                </div>
+              )}
             </div>
           )}
         </div>

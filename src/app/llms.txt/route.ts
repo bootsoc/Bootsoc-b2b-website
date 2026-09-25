@@ -11,6 +11,8 @@ export function GET() {
     "",
     `> ${site.description}`,
     "",
+    "Certifications: ISO/IEC 27001 (information security), ISO 9001 (quality management), SOC 2 Type II.",
+    "",
     "## Solutions",
     ...services.map((s) => `- [${s.product ?? s.name}](${absoluteUrl(`/solutions/${s.slug}`)}): ${s.summary}`),
     "",

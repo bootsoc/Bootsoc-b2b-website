@@ -7,6 +7,7 @@ import { Faq } from "@/components/sections/faq";
 import { CtaBand } from "@/components/sections/cta-band";
 import { ButtonLink } from "@/components/ui/button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { SpotlightGroup } from "@/components/motion/spotlight";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getService, services } from "@/content/services";
 import { site } from "@/content/site";
@@ -56,6 +57,7 @@ export default async function ServicePage({ params }: PageProps<"/solutions/[slu
         lede={s.heroSub}
         image={s.image}
         imageAlt={s.imageAlt}
+        imageTransitionName={`svc-${s.slug}`}
         crumbs={[
           { label: "Solutions", href: "/solutions" },
           { label: s.product ?? s.name, href: `/solutions/${s.slug}` },
@@ -93,9 +95,10 @@ export default async function ServicePage({ params }: PageProps<"/solutions/[slu
         <h2 id="process-heading" className="display max-w-[14ch] text-[clamp(2.5rem,5vw,4.5rem)]">
           How the program runs
         </h2>
+        <SpotlightGroup>
         <RevealGroup className="mt-12 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {s.steps.map((step, i) => (
-            <RevealItem key={step.title} className="relative rounded-[1.5rem] bg-raise p-6 ring-1 ring-line md:p-7">
+            <RevealItem key={step.title} className="spotlight rounded-[1.5rem] bg-raise p-6 ring-1 ring-line md:p-7">
               <span className="display tabular text-6xl text-signal [[data-theme=light]_&]:text-fg" aria-hidden="true">
                 {i + 1}
               </span>
@@ -104,6 +107,7 @@ export default async function ServicePage({ params }: PageProps<"/solutions/[slu
             </RevealItem>
           ))}
         </RevealGroup>
+        </SpotlightGroup>
       </section>
 
       {/* Deliverables + guarantees */}

@@ -1,4 +1,5 @@
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
+import { SplitHeading } from "@/components/motion/split-heading";
 
 const regions = [
   {
@@ -24,9 +25,9 @@ const regions = [
 export function Regions() {
   return (
     <section aria-labelledby="regions-heading" className="shell py-20 md:py-28">
-      <h2 id="regions-heading" className="display max-w-[15ch] text-[clamp(2.75rem,5.5vw,5rem)]">
+      <SplitHeading id="regions-heading" className="display max-w-[15ch] text-[clamp(2.75rem,5.5vw,5rem)]">
         Built for the rules in every market we serve.
-      </h2>
+      </SplitHeading>
       <RevealGroup className="mt-12 divide-y divide-line border-y border-line">
         {regions.map((r) => (
           <RevealItem key={r.code} className="grid gap-6 py-8 md:grid-cols-[8rem_1fr_1.2fr] md:items-baseline md:gap-10">

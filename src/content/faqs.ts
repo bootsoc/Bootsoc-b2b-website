@@ -10,6 +10,10 @@ export const homeFaqs: Faq[] = [
     a: "From first-party engagement on our own publication, IntentBuy, and from BootSoc programs, supported by a maintained B2B contact database that is re-verified on a rolling basis. Our Data and trust center explains sources, lawful bases and how we honour opt-outs.",
   },
   {
+    q: "Is BootSoc certified?",
+    a: "Yes. BootSoc holds ISO/IEC 27001 for information security, ISO 9001 for quality management, and a SOC 2 Type II report. We share the report and certificates under NDA for vendor and InfoSec reviews.",
+  },
+  {
     q: "Which regions do you cover?",
     a: "We specialise in the United States, United Kingdom and Canada, with consent, outreach and calling practices built for each market's laws. We can support EMEA and APAC programs on request.",
   },

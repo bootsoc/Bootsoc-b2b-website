@@ -90,6 +90,8 @@ export const footerNav: { title: string; links: NavItem[] }[] = [
       { label: "Audience network", href: "/network" },
       { label: "Careers", href: "/careers" },
       { label: "Resources", href: "/resources" },
+      { label: "Glossary", href: "/glossary" },
+      { label: "Case studies", href: "/case-studies" },
       { label: "Contact", href: "/contact" },
     ],
   },
@@ -106,3 +108,30 @@ export const footerNav: { title: string; links: NavItem[] }[] = [
     ],
   },
 ];
+
+export const certifications = [
+  {
+    id: "iso27001",
+    top: "ISO/IEC",
+    code: "27001",
+    name: "ISO/IEC 27001",
+    title: "Information security",
+    body: "An independently audited information security management system covering how we collect, store and deliver data.",
+  },
+  {
+    id: "soc2",
+    top: "SOC 2",
+    code: "Type II",
+    name: "SOC 2 Type II",
+    title: "Security controls, tested over time",
+    body: "An independent auditor has tested our security controls in operation over a sustained period, not just on paper.",
+  },
+  {
+    id: "iso9001",
+    top: "ISO",
+    code: "9001",
+    name: "ISO 9001",
+    title: "Quality management",
+    body: "Documented, audited processes for how programs are specified, verified and delivered, so quality is repeatable.",
+  },
+] as const;

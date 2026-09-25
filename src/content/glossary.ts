@@ -1,0 +1,40 @@
+export type Term = { term: string; slug: string; definition: string; related?: string };
+
+const t = (term: string, definition: string, related?: string): Term => ({
+  term,
+  slug: term.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, ""),
+  definition,
+  related,
+});
+
+export const glossary: Term[] = [
+  t("Account-based marketing (ABM)", "A strategy that treats a defined list of target companies as markets of one, coordinating content, ads and outreach to reach each account's buying committee.", "/solutions/account-based-marketing"),
+  t("Appointment setting", "Outbound outreach that qualifies interest and books a first sales meeting with a decision maker.", "/solutions/appointment-setting"),
+  t("BANT", "A qualification framework confirming a lead's Budget, Authority, Need and Timeline, usually in a live conversation.", "/solutions/demand-generation"),
+  t("Buying committee", "The group of people who influence a B2B purchase, typically an economic buyer, a champion, technical evaluators and end users."),
+  t("CAN-SPAM", "The US law setting rules for commercial email, including accurate headers, a postal address and a working opt-out honored within 10 business days.", "/email-policy"),
+  t("CASL", "Canada's Anti-Spam Legislation. It requires express or implied consent before sending commercial electronic messages, plus sender identification and an unsubscribe.", "/email-policy"),
+  t("Content syndication", "Distributing gated content such as reports and whitepapers to a targeted audience, and delivering the people who engage as leads.", "/solutions/content-syndication"),
+  t("Conversion rate", "The share of leads that move to the next stage, for example from lead to opportunity or from opportunity to closed deal."),
+  t("Cost per lead (CPL)", "What a program costs divided by the number of accepted leads it produced."),
+  t("CPRA", "The California Privacy Rights Act, which amended the CCPA. It gives California residents rights to access, delete, correct and opt out of the sale or sharing of their personal information.", "/privacy"),
+  t("Data broker", "A business that collects and sells personal information about people it has no direct relationship with. Several US states require data brokers to register.", "/trust"),
+  t("Demand generation", "Programs that create and capture interest in a product across the funnel, from awareness to qualified pipeline.", "/solutions/demand-generation"),
+  t("First-party data", "Information an organisation collects directly from its own audience, such as registrations and engagement on its own sites."),
+  t("Global Privacy Control (GPC)", "A browser signal that tells websites the visitor wants to opt out of the sale or sharing of their personal information. Several US states require businesses to honor it.", "/privacy-choices"),
+  t("HQL", "A high-quality lead: a marketing lead that has also answered custom qualifying questions, such as project timeline or current vendor."),
+  t("ICP", "Ideal customer profile: the firmographic and technographic description of companies most likely to buy and succeed with a product."),
+  t("Intent data", "Signals showing which companies are actively researching a topic, used to prioritise accounts that are likely in-market.", "/solutions/intent-data"),
+  t("Intent surge", "A spike in an account's research on a topic compared with its own normal level."),
+  t("Lead acceptance rate", "The share of delivered leads a client accepts as matching the agreed spec."),
+  t("Lead scoring", "Ranking leads by fit and engagement so sales can prioritise the most promising ones."),
+  t("MQL", "A marketing qualified lead: someone who matches your profile and has engaged enough for marketing to hand them on."),
+  t("PECR", "The UK's Privacy and Electronic Communications Regulations, which govern marketing emails, calls and cookies alongside UK GDPR.", "/email-policy"),
+  t("Pipeline", "The total value of open sales opportunities at a given time."),
+  t("Programmatic advertising", "Automated buying of digital ad space, which can be targeted by account, role and intent.", "/solutions/programmatic-display"),
+  t("SQL", "A sales qualified lead: a prospect sales has confirmed is worth actively pursuing."),
+  t("Suppression list", "A list of contacts or companies that must be excluded from outreach, such as customers, open opportunities and anyone who opted out."),
+  t("TAL", "Target account list: the named companies an ABM or sales program focuses on."),
+  t("Technographics", "Data about the technology a company uses, such as its CRM, cloud provider or security stack."),
+  t("UK GDPR", "The UK's version of the General Data Protection Regulation, amended by the Data (Use and Access) Act 2025.", "/privacy"),
+];

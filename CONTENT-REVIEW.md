@@ -18,6 +18,17 @@ The site copy is original and does not copy Vereigen Media's text, stats, images
 | Remote-friendly roles across US, UK and CA time zones | Careers |
 | Metrics: 250+ programs in 24 countries, 98% satisfaction, 95% retention, $5M+ revenue, 25+ specialists, 150+ campaigns, 5+ years (taken from bootsoc.com) | Home, About |
 | Client logos: Microsoft, Cisco, SAP, IBM, Oracle, Adobe, HPE, Lenovo, AT&T, Citrix, RingCentral, Mitel, Aruba, LogMeIn, Forrester (from bootsoc.com; Kodak and Kotak dropped) | Logo marquee |
+| **New:** comparison table: "Typical vendor" column (no consent record, loose filters, lead counts only) | Home "Why teams switch" |
+| **New:** integrations list: Salesforce, HubSpot, Dynamics 365, Marketo, Eloqua, Account Engagement, 6sense, Demandbase, Bombora, ON24, Zoom Events, Goldcast, Cvent, LinkedIn Ads, Google Ads, The Trade Desk, SFTP, API/webhooks | How it works |
+| **New:** industries served (cybersecurity, SaaS, fintech, healthcare IT, HR tech, martech, telecoms, manufacturing) | Home |
+| **New:** compliance chips in the footer (CCPA/CPRA, UK GDPR, PECR, CASL, PIPEDA, Law 25, CAN-SPAM, GPC) describe frameworks you operate under, not certifications | Footer |
+
+
+## Certifications (confirmed by you: ISO/IEC 27001, ISO 9001, SOC 2 Type II)
+- [ ] Check that each certificate's **scope** covers the data and services described on the site, and that it's current. The home heading says "Independently audited. Every year."
+- [ ] Send me the certificate numbers, certification bodies and SOC 2 audit period if you'd like them shown on `/trust`.
+- [ ] Official marks: the site uses its own typographic seals. If you'd rather show the certification body's official logo (e.g. from your ISO registrar), send the files and their usage rules. The AICPA SOC logo may only be used under AICPA's own terms.
+- [ ] Security documentation requests go to privacy@bootsoc.com. Change this if you have a security@ inbox.
 
 ## 2. Legal items needing counsel review
 - [ ] Privacy policy, cookie policy, terms, email policy and DPA page were drafted to current US, UK and Canadian law but **must be reviewed by a qualified lawyer**.
@@ -31,6 +42,8 @@ The site copy is original and does not copy Vereigen Media's text, stats, images
 - [ ] LinkedIn company URL in `src/content/site.ts` (`linkedin.com/company/bootsoc`) should be confirmed.
 
 ## 3. Nice to add later
-- Real case studies (Sanity → Case study; tick "Client approved" first)
+- Real case studies: add them in Sanity under Case study and tick "Client approved". The homepage rail and /case-studies fill in automatically.
+- Client testimonials and G2 or TrustRadius badges. Every competitor reviewed shows these; add them only if they're real.
+- A gated research report (e.g. "State of B2B lead quality 2026"). Anteriad, INFUSE and Intentsify all use one as a lead magnet.
 - Team photos and leadership bios (About currently uses stock photography from Unsplash)
 - A real sample lead file (PDF or CSV) to send when someone requests one

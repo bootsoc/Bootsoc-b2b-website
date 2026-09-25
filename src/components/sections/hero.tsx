@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
 import { Magnetic } from "@/components/motion/magnetic";
 import { HeroParallax } from "@/components/sections/hero-parallax";
+import { Tilt } from "@/components/motion/tilt";
 import heroImg from "../../../public/images/hero-buyer-research.jpg";
 
 const lines = [
@@ -60,6 +61,7 @@ export function Hero() {
           </div>
 
           <div className="relative animate-settle" style={{ animationDelay: "250ms" }}>
+            <Tilt>
             <div className="rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)] md:aspect-[16/9]">
                 <HeroParallax>
@@ -75,6 +77,7 @@ export function Hero() {
                 </HeroParallax>
               </div>
             </div>
+            </Tilt>
           </div>
         </div>
       </div>
