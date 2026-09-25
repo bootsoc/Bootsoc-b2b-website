@@ -18,7 +18,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
       <div className="shell">
-        <h1 className="display text-[clamp(3.25rem,10.5vw,10.5rem)]">
+        <h1 className="display text-[clamp(2.75rem,7.2vw,7.75rem)]">
           <span className="sr-only">Pipeline from buyers already in-market.</span>
           <span aria-hidden="true" className="block">
             {lines.map((line) => (

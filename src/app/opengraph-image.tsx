@@ -13,7 +13,7 @@ const tagline = "Verified B2B demand generation for the US, UK and Canada";
 async function displayFont() {
   try {
     const css = await fetch(
-      `https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@96,75,800&text=${encodeURIComponent(headline + tagline)}`,
+      `https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@96,100,600&text=${encodeURIComponent(headline + tagline)}`,
     ).then((r) => r.text());
     const url = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
     return url ? await fetch(url).then((r) => r.arrayBuffer()) : null;
@@ -31,15 +31,15 @@ export default async function OgImage() {
       <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", justifyContent: "space-between", background: "#0b0b0a", padding: 72 }}>
         { }
         <img src={`data:image/svg+xml;base64,${Buffer.from(yellow).toString("base64")}`} width={300} height={56} alt="" />
-        <div style={{ display: "flex", flexDirection: "column", color: "#f4f4ef", fontFamily: font ? "Display" : undefined, fontSize: font ? 120 : 92, fontWeight: 800, lineHeight: 0.95, letterSpacing: font ? -4 : -3 }}>
+        <div style={{ display: "flex", flexDirection: "column", color: "#f4f4ef", fontFamily: font ? "Display" : undefined, fontSize: font ? 96 : 88, fontWeight: 600, lineHeight: 1.02, letterSpacing: -1 }}>
           <span>Pipeline from buyers</span>
           <span style={{ display: "flex" }}>
-            already<span style={{ color: "#fff100", marginLeft: 28 }}>in-market.</span>
+            already<span style={{ color: "#fff100", marginLeft: 24 }}>in-market.</span>
           </span>
         </div>
         <div style={{ display: "flex", color: "#a1a197", fontSize: 36, fontFamily: font ? "Display" : undefined }}>{tagline}</div>
       </div>
     ),
-    { ...size, fonts: font ? [{ name: "Display", data: font, weight: 800, style: "normal" }] : [] },
+    { ...size, fonts: font ? [{ name: "Display", data: font, weight: 600, style: "normal" }] : [] },
   );
 }

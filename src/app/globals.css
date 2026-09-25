@@ -156,21 +156,21 @@
 }
 
 @layer components {
-  /* Condensed, heavy display face. wdth 75 gives the brand its compressed voice. */
+  /* Display face at normal width and semibold weight, with open spacing for legibility at large sizes. */
   .display {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-variation-settings: "wdth" 75, "opsz" 96;
-    letter-spacing: -0.035em;
-    line-height: 0.92;
+    font-weight: 600;
+    font-variation-settings: "wdth" 100, "opsz" 96;
+    letter-spacing: -0.01em;
+    line-height: 1;
   }
 
   .display-md {
     font-family: var(--font-display);
-    font-weight: 700;
-    font-variation-settings: "wdth" 80, "opsz" 48;
-    letter-spacing: -0.025em;
-    line-height: 1;
+    font-weight: 600;
+    font-variation-settings: "wdth" 100, "opsz" 48;
+    letter-spacing: -0.005em;
+    line-height: 1.08;
   }
 
   .shell {
@@ -205,7 +205,7 @@
   .prose-bs h2 {
     font-family: var(--font-display);
     font-weight: 700;
-    font-variation-settings: "wdth" 85;
+    font-variation-settings: "wdth" 100;
     font-size: 1.75rem;
     line-height: 1.1;
     letter-spacing: -0.02em;

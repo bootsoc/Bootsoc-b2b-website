@@ -19,7 +19,7 @@
 Brand yellow is the only accent (Color Consistency Lock). No purple, no gradients-as-decoration.
 
 ## Type
-- **Display:** Bricolage Grotesque, 800, `wdth` 75 (condensed), tracking −0.035em, `text-wrap: balance`
+- **Display:** Bricolage Grotesque, 600, `wdth` 100, tracking −0.01em, line-height 1, `text-wrap: balance`
 - **Body/UI:** Geist 400/500
 - **Data:** Geist Mono, only for numeric values in the estimator and pipeline, with `tabular-nums`
 - Sentence case everywhere. No all-caps eyebrow labels. Max 1 eyebrow per 3 sections.
