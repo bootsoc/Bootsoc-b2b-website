@@ -6,17 +6,14 @@ export const alt = "BootSoc: verified B2B pipeline from buyers already in-market
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const headline = "Pipeline from buyers already in-market.";
 const tagline = "Verified B2B demand generation for the US, UK and Canada";
 
-/** Loads the condensed display cut of Bricolage Grotesque for just the glyphs we render. */
+/** Loads Clash Display (semibold) from Fontshare's CDN; the OG renderer needs TTF/OTF/WOFF, not WOFF2. */
 async function displayFont() {
   try {
-    const css = await fetch(
-      `https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@96,100,600&text=${encodeURIComponent(headline + tagline)}`,
-    ).then((r) => r.text());
-    const url = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/)?.[1];
-    return url ? await fetch(url).then((r) => r.arrayBuffer()) : null;
+    const css = await fetch("https://api.fontshare.com/v2/css?f[]=clash-display@600&display=swap").then((r) => r.text());
+    const url = css.match(/url\('([^']+?)'\) format\('truetype'\)/)?.[1];
+    return url ? await fetch(url.startsWith("//") ? `https:${url}` : url).then((r) => r.arrayBuffer()) : null;
   } catch {
     return null;
   }

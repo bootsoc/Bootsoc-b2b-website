@@ -19,8 +19,8 @@
 Brand yellow is the only accent (Color Consistency Lock). No purple, no gradients-as-decoration.
 
 ## Type
-- **Display:** Bricolage Grotesque, 600, `wdth` 100, tracking −0.01em, line-height 1, `text-wrap: balance`
-- **Body/UI:** Geist 400/500
+- **Display:** Clash Display 600 (Fontshare), tracking −0.02em, line-height 1.02, `text-wrap: balance`
+- **Body/UI:** Satoshi 400/500/700 (Fontshare). Loaded from Fontshare's CDN; never commit the font files to the public repo (ITF FFL).
 - **Data:** Geist Mono, only for numeric values in the estimator and pipeline, with `tabular-nums`
 - Sentence case everywhere. No all-caps eyebrow labels. Max 1 eyebrow per 3 sections.
 

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header } from "@/components/layout/header";
@@ -11,14 +11,16 @@ import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { certifications, site } from "@/content/site";
 import "./globals.css";
 
-const geist = Geist({ variable: "--font-geist", subsets: ["latin"], display: "swap" });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["wdth", "opsz"],
-});
+/**
+ * Clash Display (headlines) and Satoshi (body) are Fontshare fonts under the ITF Free Font License.
+ * That licence bars redistributing the font files via public repositories, so they're served from
+ * Fontshare's own CDN (explicitly permitted) instead of being committed here.
+ */
+const FONTSHARE_CSS = [
+  "https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap",
+  "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap",
+];
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -52,10 +54,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       data-theme="dark"
       suppressHydrationWarning
-      className={`${geist.variable} ${geistMono.variable} ${bricolage.variable} antialiased`}
+      className={`${geistMono.variable} antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <link rel="preconnect" href="https://api.fontshare.com" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        {FONTSHARE_CSS.map((href) => (
+          <link key={href} rel="stylesheet" href={href} />
+        ))}
       </head>
       <body className="grain min-h-dvh overflow-x-clip">
         <JsonLd
