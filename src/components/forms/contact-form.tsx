@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { submitLead } from "@/app/actions";
 import { services } from "@/content/services";
-import { Checkbox, FormGuards, FormMessage, SelectField, SubmitButton, TextArea, TextField, useServerForm } from "@/components/forms/fields";
+import { Checkbox, FormGuards, FormMessage, SelectField, SubmitButton, TextArea, TextField, useServerForm, HumanCheck } from "@/components/forms/fields";
 
 
 export function ContactForm({ intent = "contact" }: { intent?: "contact" | "sample" }) {
-  const { state, pending, onSubmit, formRef, errors } = useServerForm(submitLead);
+  const { state, pending, onSubmit, formRef, attempt, errors } = useServerForm(submitLead);
   const e = errors;
 
   if (state.status === "success") {
@@ -78,6 +78,7 @@ export function ContactForm({ intent = "contact" }: { intent?: "contact" | "samp
         </Link>{" "}
         for how we handle personal data.
       </p>
+      <HumanCheck attempt={attempt} />
       <FormMessage state={state} />
       <div>
         <SubmitButton pending={pending}>{intent === "sample" ? "Request sample file" : "Book a strategy call"}</SubmitButton>

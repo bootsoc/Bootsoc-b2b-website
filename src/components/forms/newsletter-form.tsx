@@ -1,11 +1,11 @@
 "use client";
 
 import { subscribeNewsletter } from "@/app/actions";
-import { Checkbox, FormGuards, FormMessage, SubmitButton, useServerForm } from "@/components/forms/fields";
+import { Checkbox, FormGuards, FormMessage, HumanCheck, SubmitButton, useServerForm } from "@/components/forms/fields";
 
 
 export function NewsletterForm() {
-  const { state, pending, onSubmit, formRef } = useServerForm(subscribeNewsletter);
+  const { state, pending, onSubmit, formRef, attempt } = useServerForm(subscribeNewsletter);
 
   if (state.status === "success") return <div className="mt-4"><FormMessage state={state} /></div>;
 
@@ -32,6 +32,7 @@ export function NewsletterForm() {
           Subscribe
         </SubmitButton>
       </div>
+      <HumanCheck attempt={attempt} />
       <Checkbox name="consent" required error={state.fieldErrors?.consent}>
         Email me BootSoc&apos;s monthly notes. I can unsubscribe at any time.
       </Checkbox>

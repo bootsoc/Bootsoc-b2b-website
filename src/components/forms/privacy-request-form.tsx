@@ -1,11 +1,11 @@
 "use client";
 
 import { submitPrivacyRequest } from "@/app/actions";
-import { Checkbox, FormGuards, FormMessage, SelectField, SubmitButton, TextArea, TextField, useServerForm } from "@/components/forms/fields";
+import { Checkbox, FormGuards, FormMessage, SelectField, SubmitButton, TextArea, TextField, useServerForm, HumanCheck } from "@/components/forms/fields";
 
 
 export function PrivacyRequestForm() {
-  const { state, pending, onSubmit, formRef, errors } = useServerForm(submitPrivacyRequest);
+  const { state, pending, onSubmit, formRef, attempt, errors } = useServerForm(submitPrivacyRequest);
   const e = errors;
 
   if (state.status === "success") return <FormMessage state={state} />;
@@ -59,6 +59,7 @@ export function PrivacyRequestForm() {
       <Checkbox name="attest" required error={e.attest}>
         I confirm I am the person named above, or an authorized agent acting on their behalf with written permission.
       </Checkbox>
+      <HumanCheck attempt={attempt} />
       <FormMessage state={state} />
       <div>
         <SubmitButton pending={pending} pendingLabel="Submitting…">Submit request</SubmitButton>

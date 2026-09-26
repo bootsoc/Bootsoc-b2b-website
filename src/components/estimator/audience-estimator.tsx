@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { animate, useReducedMotion } from "motion/react";
 import { submitEstimator } from "@/app/actions";
-import { Checkbox, FormGuards, FormMessage, SubmitButton, TextField, useServerForm } from "@/components/forms/fields";
+import { Checkbox, FormGuards, FormMessage, SubmitButton, TextField, useServerForm, HumanCheck } from "@/components/forms/fields";
 import { compact, defaultSelection, estimate, groups, recommend, regions, type Selection } from "@/lib/estimator";
 import { cn } from "@/lib/utils";
 
@@ -177,7 +177,7 @@ export function AudienceEstimator({ compactMode = false }: { compactMode?: boole
 
 
 function ReportForm({ selection }: { selection: Selection }) {
-  const { state, pending, onSubmit, formRef, errors } = useServerForm(submitEstimator);
+  const { state, pending, onSubmit, formRef, attempt, errors } = useServerForm(submitEstimator);
   const e = errors;
 
   return (
@@ -198,6 +198,7 @@ function ReportForm({ selection }: { selection: Selection }) {
           <TextField label="Work email" name="email" type="email" inputMode="email" autoComplete="email" spellCheck={false} error={e.email} />
           <TextField label="Company" name="company" autoComplete="organization" error={e.company} />
           <Checkbox name="marketingConsent">Also send me BootSoc&apos;s monthly demand-gen notes.</Checkbox>
+          <HumanCheck attempt={attempt} />
           <FormMessage state={state} />
           <div>
             <SubmitButton pending={pending}>Email my audience report</SubmitButton>

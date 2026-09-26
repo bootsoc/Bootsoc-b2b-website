@@ -9,7 +9,7 @@ type Notice = { subject: string; text: string; replyTo?: string };
  */
 export async function notifyTeam({ subject, text, replyTo }: Notice) {
   const to = process.env.NOTIFY_TO ?? "sayhi@bootsoc.com";
-  const from = process.env.NOTIFY_FROM ?? "BootSoc Website <website@bootsoc.com>";
+  const from = process.env.NOTIFY_FROM ?? "BootSoc Website <website@notify.bootsoc.com>";
 
   try {
     if (process.env.RESEND_API_KEY) {

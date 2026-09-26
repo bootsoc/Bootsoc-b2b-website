@@ -3,10 +3,10 @@
 import Link from "next/link";
 import { DownloadSimpleIcon } from "@phosphor-icons/react";
 import { requestReport } from "@/app/actions";
-import { Checkbox, FormGuards, FormMessage, SelectField, SubmitButton, TextField, useServerForm } from "@/components/forms/fields";
+import { Checkbox, FormGuards, FormMessage, SelectField, SubmitButton, TextField, useServerForm, HumanCheck } from "@/components/forms/fields";
 
 export function ReportForm() {
-  const { state, pending, onSubmit, formRef, errors: e } = useServerForm(requestReport);
+  const { state, pending, onSubmit, formRef, attempt, errors: e } = useServerForm(requestReport);
 
   if (state.status === "success" && state.downloadUrl) {
     return (
@@ -61,6 +61,7 @@ export function ReportForm() {
         </Link>
         .
       </p>
+      <HumanCheck attempt={attempt} />
       <FormMessage state={state} />
       <div>
         <SubmitButton pending={pending} pendingLabel="Preparing…">

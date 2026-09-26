@@ -2,7 +2,7 @@
 
 import { startTransition, useActionState, useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import Script from "next/script";
+import { Turnstile } from "@/components/forms/turnstile";
 import { CheckCircleIcon, WarningCircleIcon } from "@phosphor-icons/react";
 import type { FormState } from "@/app/actions";
 import { cn } from "@/lib/utils";
@@ -191,10 +191,16 @@ export function Checkbox({
   );
 }
 
-/** Honeypot, fill-time stamp, source path, UTM parameters and (optionally) Cloudflare Turnstile. */
+/** Cloudflare Turnstile bot check, shown just above the submit button when a site key is configured. */
+export function HumanCheck({ attempt = 0 }: { attempt?: number }) {
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  // Tokens are single-use, so remount (fresh token) after every submission attempt.
+  return siteKey ? <Turnstile key={attempt} siteKey={siteKey} /> : null;
+}
+
+/** Honeypot, fill-time stamp, source path and UTM parameters. */
 export function FormGuards() {
   const pathname = usePathname();
-  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
   // Held in state (not DOM refs): React re-renders reset hidden inputs' values, which would wipe the
   // fill-time stamp after a validation error and make the corrected submission look like a bot.
   const [startedAt, setStartedAt] = useState("");
@@ -220,12 +226,6 @@ export function FormGuards() {
       <input type="hidden" name="_t" value={startedAt} />
       <input type="hidden" name="_utm" value={utm} />
       <input type="hidden" name="_path" value={pathname} />
-      {siteKey && (
-        <>
-          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
-          <div className="cf-turnstile" data-sitekey={siteKey} data-theme="auto" />
-        </>
-      )}
     </>
   );
 }
@@ -294,11 +294,18 @@ export function useFocusFirstError(state: FormState, formRef: React.RefObject<HT
 export function useServerForm(action: (prev: FormState, data: FormData) => Promise<FormState>) {
   const [state, dispatch, pending] = useActionState(action, { status: "idle" } as FormState);
   const formRef = useRef<HTMLFormElement>(null);
+  // Counts completed submissions; each new result object means the server consumed the bot-check token.
+  const [attempt, setAttempt] = useState(0);
+  const [lastState, setLastState] = useState(state);
+  if (state !== lastState) {
+    setLastState(state);
+    setAttempt((n) => n + 1);
+  }
   useFocusFirstError(state, formRef);
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     startTransition(() => dispatch(data));
   };
-  return { state, pending, onSubmit, formRef, errors: state.fieldErrors ?? {} };
+  return { state, pending, onSubmit, formRef, attempt, errors: state.fieldErrors ?? {} };
 }
