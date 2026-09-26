@@ -9,18 +9,10 @@ import { ConsentManager } from "@/components/consent/consent-manager";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { certifications, site } from "@/content/site";
+import { getFontshareStyles } from "@/lib/fonts";
 import "./globals.css";
 
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
-/**
- * Clash Display (headlines) and Satoshi (body) are Fontshare fonts under the ITF Free Font License.
- * That licence bars redistributing the font files via public repositories, so they're served from
- * Fontshare's own CDN (explicitly permitted) instead of being committed here.
- */
-const FONTSHARE_CSS = [
-  "https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap",
-  "https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap",
-];
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -48,7 +40,10 @@ export const viewport: Viewport = {
   colorScheme: "dark light",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  // Clash Display (headlines) and Satoshi (body) come from Fontshare under the ITF Free Font License,
+  // which bars redistributing the files via public repos, so the files stay on Fontshare's CDN.
+  const fonts = await getFontshareStyles();
   return (
     <html
       lang="en"
@@ -58,11 +53,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        <link rel="preconnect" href="https://api.fontshare.com" />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
-        {FONTSHARE_CSS.map((href) => (
-          <link key={href} rel="stylesheet" href={href} />
-        ))}
+        {fonts ? (
+          <>
+            {fonts.preload.map((href) => (
+              <link key={href} rel="preload" href={href} as="font" type="font/woff2" crossOrigin="anonymous" />
+            ))}
+            <style dangerouslySetInnerHTML={{ __html: fonts.css }} />
+          </>
+        ) : (
+          <>
+            <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" />
+            <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" />
+          </>
+        )}
       </head>
       <body className="grain min-h-dvh overflow-x-clip">
         <JsonLd

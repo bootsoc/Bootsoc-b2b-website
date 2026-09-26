@@ -32,7 +32,8 @@ export function Manifesto() {
 }
 
 function Word({ children, progress, range }: { children: string; progress: MotionValue<number>; range: [number, number] }) {
-  const opacity = useTransform(progress, range, [0.18, 1]);
+  // Dimmed words stay at 60% so they still pass WCAG AA contrast in both themes.
+  const opacity = useTransform(progress, range, [0.6, 1]);
   return (
     <>
       <motion.span style={{ opacity }}>{children}</motion.span>{" "}

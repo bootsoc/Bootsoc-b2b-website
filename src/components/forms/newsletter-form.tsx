@@ -14,7 +14,7 @@ export function NewsletterForm() {
       <FormGuards />
       <div className="flex gap-2">
         <label htmlFor="newsletter-email" className="sr-only">
-          Work email
+          Newsletter email
         </label>
         <input
           id="newsletter-email"
@@ -36,6 +36,7 @@ export function NewsletterForm() {
         Email me BootSoc&apos;s monthly notes. I can unsubscribe at any time.
       </Checkbox>
       {state.fieldErrors?.email && <p className="text-sm text-danger">{state.fieldErrors.email}</p>}
+      {state.status === "error" && !state.fieldErrors && <FormMessage state={state} />}
     </form>
   );
 }

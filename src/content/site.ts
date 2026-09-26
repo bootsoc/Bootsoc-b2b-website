@@ -90,6 +90,7 @@ export const footerNav: { title: string; links: NavItem[] }[] = [
       { label: "Audience network", href: "/network" },
       { label: "Careers", href: "/careers" },
       { label: "Resources", href: "/resources" },
+      { label: "2026 lead quality report", href: "/report" },
       { label: "Glossary", href: "/glossary" },
       { label: "Case studies", href: "/case-studies" },
       { label: "Contact", href: "/contact" },

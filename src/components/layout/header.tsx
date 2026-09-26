@@ -144,9 +144,14 @@ export function Header() {
                           </Link>
                         </div>
                         <div className="px-3 pb-2 pt-3">
-                          <Link href="/solutions" className="text-sm text-muted hover:text-fg">
-                            Compare all solutions
-                          </Link>
+                          <div className="flex flex-wrap justify-between gap-3">
+                            <Link href="/solutions" className="text-sm text-muted hover:text-fg">
+                              Compare all solutions
+                            </Link>
+                            <Link href="/report" className="text-sm text-muted hover:text-fg">
+                              Free: 2026 B2B lead quality report
+                            </Link>
+                          </div>
                         </div>
                       </motion.div>
                     )}

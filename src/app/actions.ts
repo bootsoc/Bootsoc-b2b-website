@@ -6,12 +6,15 @@ import { sql } from "@/lib/db";
 import { notifyTeam } from "@/lib/notify";
 import { requestMeta } from "@/lib/request";
 import { site } from "@/content/site";
+import { report } from "@/content/report";
+import { signReportToken } from "@/lib/report-token";
 
 export type FormState = {
   status: "idle" | "success" | "error";
   message?: string;
   fieldErrors?: Record<string, string>;
   reference?: string;
+  downloadUrl?: string;
 };
 
 const MIN_FILL_MS = 2500;
@@ -326,5 +329,51 @@ export async function submitPrivacyRequest(_prev: FormState, formData: FormData)
     status: "success",
     reference,
     message: `Request received. Your reference is ${reference}. We'll verify your identity by email and respond by ${due.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}.`,
+  };
+}
+
+const reportSchema = z.object({
+  name: text(120).min(2, "Enter your full name."),
+  email,
+  company: text(160).min(2, "Enter your company name."),
+  jobTitle: text(160).min(2, "Enter your job title."),
+  country: z.enum(["US", "GB", "CA", "Other"], { message: "Choose your country." }),
+  marketingConsent: z.boolean(),
+});
+
+/** Gated report: records the lead, then returns a signed, expiring download link. */
+export async function requestReport(_prev: FormState, formData: FormData): Promise<FormState> {
+  const g = await guard(formData);
+  if (!g.ok) return g.state;
+  const parsed = reportSchema.safeParse({
+    name: formData.get("name") ?? "",
+    email: formData.get("email") ?? "",
+    company: formData.get("company") ?? "",
+    jobTitle: formData.get("jobTitle") ?? "",
+    country: formData.get("country") ?? "",
+    marketingConsent: formData.get("marketingConsent") === "on",
+  });
+  if (!parsed.success) {
+    return { status: "error", message: "Check the highlighted fields.", fieldErrors: fieldErrors(parsed.error) };
+  }
+  const d = parsed.data;
+  const db = sql();
+  if (db) {
+    await db`
+      insert into leads (kind, name, email, company, job_title, country, payload, marketing_consent, consent_text, policy_version, source_path, utm, ip_hash, geo_country, geo_region, user_agent)
+      values ('report', ${d.name}, ${d.email}, ${d.company}, ${d.jobTitle}, ${d.country}, ${JSON.stringify({ report: report.slug })}::jsonb,
+        ${d.marketingConsent}, ${d.marketingConsent ? MARKETING_CONSENT_TEXT : null}, ${site.policyVersion}, ${String(formData.get("_path") ?? "")},
+        ${JSON.stringify(utmFrom(formData))}::jsonb, ${g.meta.ipHash}, ${g.meta.country}, ${g.meta.region}, ${g.meta.userAgent})
+    `;
+  }
+  await notifyTeam({
+    subject: `Report download: ${d.company} (${d.jobTitle})`,
+    replyTo: d.email,
+    text: `Name: ${d.name}\nEmail: ${d.email}\nCompany: ${d.company}\nTitle: ${d.jobTitle}\nCountry: ${d.country}\nMarketing consent: ${d.marketingConsent ? "yes" : "no"}`,
+  });
+  return {
+    status: "success",
+    message: "Your report is ready. The download link below works for the next 7 days.",
+    downloadUrl: `/api/report/download?t=${signReportToken()}`,
   };
 }

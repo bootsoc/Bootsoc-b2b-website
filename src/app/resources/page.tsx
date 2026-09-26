@@ -28,6 +28,9 @@ export default async function ResourcesPage() {
         crumbs={[{ label: "Resources", href: "/resources" }]}
       >
         <div className="flex flex-wrap gap-3">
+          <Link href="/report" className="inline-flex min-h-11 items-center rounded-full bg-signal px-5 text-sm font-medium text-on-signal hover:bg-signal-press">
+            Get the 2026 lead quality report
+          </Link>
           <Link href="/glossary" className="inline-flex min-h-11 items-center rounded-full px-5 text-sm font-medium ring-1 ring-line hover:bg-raise">
             Browse the glossary
           </Link>

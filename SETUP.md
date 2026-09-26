@@ -44,3 +44,24 @@ Create a Resend account, verify the `bootsoc.com` domain, and set `RESEND_API_KE
 5. Add GA4 / LinkedIn IDs if wanted; they only load after consent.
 6. Submit `https://bootsoc.com/sitemap.xml` in Google Search Console and Bing Webmaster Tools.
 7. Complete every item in `CONTENT-REVIEW.md`, especially the legal review.
+
+## Tests
+```bash
+npm test            # unit tests (Vitest): consent regimes, estimator model, report tokens
+npm run test:e2e    # browser tests (Playwright): forms, consent, interactions, axe accessibility in both themes
+npm run test:all    # lint + typecheck + both suites
+```
+E2E tests build the site and run it with the database and email switched off, so they never write real leads.
+GitHub Actions runs the whole suite on every push and pull request (`.github/workflows/ci.yml`).
+
+## Gated report
+- Landing page: `/report`. The form stores a `report` lead and returns a signed download link that expires after 7 days.
+- Content: `src/content/report.ts`. Print layout: `/report-print` (dev only).
+- To regenerate after editing: run `npm run dev`, then `npm run report:pdf`, then upload the new file:
+  `vercel blob put private/bootsoc-b2b-lead-quality-report-2026.pdf --access private --pathname reports/bootsoc-b2b-lead-quality-report-2026.pdf --allow-overwrite true`
+- The PDF is stored in the private Vercel Blob store `bootsoc-private`, never in the public repo.
+
+## Fonts
+Clash Display and Satoshi (Fontshare, ITF Free Font License) load from Fontshare's CDN. Their @font-face rules are
+inlined at build time (`src/lib/fonts.ts`) and paired with metric-matched fallbacks to avoid layout shift. Never
+commit the font files to this public repo.

@@ -60,7 +60,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="relative animate-settle" style={{ animationDelay: "250ms" }}>
+          <div className="relative animate-unclip" style={{ animationDelay: "150ms" }}>
             <Tilt>
             <div className="rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line">
               <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)] md:aspect-[16/9]">

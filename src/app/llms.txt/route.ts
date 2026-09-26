@@ -22,6 +22,7 @@ export function GET() {
     `- [Audience estimator](${absoluteUrl("/audience-estimator")}): Estimate reachable and in-market B2B audiences.`,
     `- [IntentBuy network](${absoluteUrl("/network")}): BootSoc's owned technology publication.`,
     `- [Resources](${absoluteUrl("/resources")}): Guides on verified leads, intent data and compliance.`,
+    `- [2026 B2B Lead Quality Report](${absoluteUrl("/report")}): Free report: 95:5 buying reality, verification standard, US/UK/Canada rules, vendor scorecard.`,
     `- [Contact](${absoluteUrl("/contact")}): Book a strategy call. Email ${site.email}.`,
     "",
     "## Policies",

@@ -1,6 +1,6 @@
 "use client";
 
-import { startTransition, useActionState, useEffect, useId, useRef } from "react";
+import { startTransition, useActionState, useEffect, useId, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Script from "next/script";
 import { CheckCircleIcon, WarningCircleIcon } from "@phosphor-icons/react";
@@ -194,17 +194,19 @@ export function Checkbox({
 /** Honeypot, fill-time stamp, source path, UTM parameters and (optionally) Cloudflare Turnstile. */
 export function FormGuards() {
   const pathname = usePathname();
-  const tRef = useRef<HTMLInputElement>(null);
-  const utmRef = useRef<HTMLInputElement>(null);
   const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+  // Held in state (not DOM refs): React re-renders reset hidden inputs' values, which would wipe the
+  // fill-time stamp after a validation error and make the corrected submission look like a bot.
+  const [startedAt, setStartedAt] = useState("");
+  const [utm, setUtm] = useState("");
 
   useEffect(() => {
-    if (tRef.current) tRef.current.value = String(Date.now());
-    if (utmRef.current) {
-      const params = new URLSearchParams(window.location.search);
-      const utm = Object.fromEntries([...params].filter(([k]) => k.startsWith("utm_")));
-      if (Object.keys(utm).length) utmRef.current.value = JSON.stringify(utm);
-    }
+    const params = new URLSearchParams(window.location.search);
+    const found = Object.fromEntries([...params].filter(([k]) => k.startsWith("utm_")));
+    // Timestamps and URL params only exist in the browser, so they are captured once after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setStartedAt(String(Date.now()));
+    if (Object.keys(found).length) setUtm(JSON.stringify(found));
   }, []);
 
   return (
@@ -215,8 +217,8 @@ export function FormGuards() {
           <input type="text" name="bs_hp_check" tabIndex={-1} autoComplete="off" data-1p-ignore data-lpignore="true" />
         </label>
       </div>
-      <input ref={tRef} type="hidden" name="_t" defaultValue="" />
-      <input ref={utmRef} type="hidden" name="_utm" defaultValue="" />
+      <input type="hidden" name="_t" value={startedAt} />
+      <input type="hidden" name="_utm" value={utm} />
       <input type="hidden" name="_path" value={pathname} />
       {siteKey && (
         <>

@@ -65,7 +65,7 @@ export function PageHero({
               <p className="animate-fade-up text-sm font-medium text-signal [[data-theme=light]_&]:text-fg">{eyebrow}</p>
             )}
             <h1
-              className="display mt-3 max-w-[16ch] animate-fade-up text-[clamp(3rem,7.5vw,7rem)]"
+              className="display mt-3 max-w-[16ch] animate-lift text-[clamp(3rem,7.5vw,7rem)]"
               style={{ animationDelay: "60ms" }}
             >
               {title}
@@ -85,7 +85,7 @@ export function PageHero({
             )}
           </div>
           {image && (
-            <div className="animate-settle rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line" style={{ animationDelay: "150ms" }}>
+            <div className="animate-unclip rounded-[2rem] bg-fg/5 p-1.5 ring-1 ring-line" style={{ animationDelay: "120ms" }}>
               {imageTransitionName ? (
                 <ViewTransition name={imageTransitionName} share="morph" default="none">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-[calc(2rem-6px)]">

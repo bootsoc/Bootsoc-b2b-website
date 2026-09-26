@@ -97,43 +97,43 @@ export function RoiCalculator() {
           </div>
         </div>
 
-        <dl className="grid content-start gap-3" aria-live="polite">
+        <div className="grid content-start gap-3" aria-live="polite">
           <div className="rounded-2xl bg-signal p-6 text-on-signal">
-            <dt className="text-sm font-medium">Pipeline created per month</dt>
-            <dd>
+            <p className="text-sm font-medium">Pipeline created per month</p>
+            <p>
               <Animated value={pipeline} format={(n) => usd(n)} className="display tabular mt-1 block text-[clamp(2.75rem,5vw,4rem)]" />
-            </dd>
+            </p>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-2xl bg-bg/60 p-5 ring-1 ring-line">
-              <dt className="text-sm text-muted">Opportunities</dt>
-              <dd>
+              <p className="text-sm text-muted">Opportunities</p>
+              <p>
                 <Animated value={opps} format={(n) => num(Math.round(n))} className="display tabular mt-1 block text-4xl" />
-              </dd>
+              </p>
             </div>
             <div className="rounded-2xl bg-bg/60 p-5 ring-1 ring-line">
-              <dt className="text-sm text-muted">Program spend</dt>
-              <dd>
+              <p className="text-sm text-muted">Program spend</p>
+              <p>
                 <Animated value={spend} format={(n) => usd(n)} className="display tabular mt-1 block text-4xl" />
-              </dd>
+              </p>
             </div>
             <div className="rounded-2xl bg-bg/60 p-5 ring-1 ring-line">
-              <dt className="text-sm text-muted">Expected closed revenue</dt>
-              <dd>
+              <p className="text-sm text-muted">Expected closed revenue</p>
+              <p>
                 <Animated value={revenue} format={(n) => usd(n)} className="display tabular mt-1 block text-4xl" />
-              </dd>
+              </p>
             </div>
             <div className="rounded-2xl bg-bg/60 p-5 ring-1 ring-line">
-              <dt className="text-sm text-muted">Return on spend</dt>
-              <dd>
+              <p className="text-sm text-muted">Return on spend</p>
+              <p>
                 <Animated value={roi} format={(n) => `${n.toFixed(1)}x`} className="display tabular mt-1 block text-4xl" />
-              </dd>
+              </p>
             </div>
           </div>
           <p className="mt-2 text-xs leading-relaxed text-muted">
             Illustrative model based on the values you enter. It is not a forecast or a quote.
           </p>
-        </dl>
+        </div>
       </div>
     </section>
   );

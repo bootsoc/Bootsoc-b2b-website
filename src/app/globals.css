@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+/* Metric-matched fallbacks (measured against Arial) so text doesn't reflow when the web fonts arrive. */
+@font-face {
+  font-family: "Clash Display Fallback";
+  src: local("Arial Bold"), local("Arial-BoldMT"), local("Arial");
+  font-weight: 500 700;
+  size-adjust: 108%;
+  ascent-override: 82.4%;
+  descent-override: 23.1%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: "Satoshi Fallback";
+  src: local("Arial"), local("ArialMT");
+  size-adjust: 99.2%;
+  ascent-override: 101.8%;
+  descent-override: 24.2%;
+  line-gap-override: 0%;
+}
+
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 /* Brand tokens. Dark is the brand default; light is opt-in via the theme toggle. */
@@ -47,9 +66,9 @@
   --color-danger: var(--danger);
   --color-ok: var(--ok);
 
-  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Satoshi", "Satoshi Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-display: "Clash Display", "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Clash Display", "Clash Display Fallback", "Satoshi Fallback", ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-soft: cubic-bezier(0.32, 0.72, 0, 1);
@@ -58,6 +77,9 @@
   --animate-rise: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-fade-up: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-settle: settle 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* LCP-safe entrances: never start at opacity 0, so the browser counts the element as painted immediately. */
+  --animate-unclip: unclip 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-lift: lift 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @keyframes rise {
     from {
@@ -74,6 +96,24 @@
     }
     to {
       opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes unclip {
+    from {
+      clip-path: inset(10% 0% 0% 0% round 2rem);
+      transform: translate3d(0, 24px, 0);
+    }
+    to {
+      clip-path: inset(0% 0% 0% 0% round 2rem);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  @keyframes lift {
+    from {
+      transform: translate3d(0, 18px, 0);
+    }
+    to {
       transform: translate3d(0, 0, 0);
     }
   }

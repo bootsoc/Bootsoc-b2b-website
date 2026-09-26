@@ -30,6 +30,10 @@ The site copy is original and does not copy Vereigen Media's text, stats, images
 - [ ] Official marks: the site uses its own typographic seals. If you'd rather show the certification body's official logo (e.g. from your ISO registrar), send the files and their usage rules. The AICPA SOC logo may only be used under AICPA's own terms.
 - [ ] Security documentation requests go to privacy@bootsoc.com. Change this if you have a security@ inbox.
 
+## Report (/report)
+- [ ] The 2026 B2B Lead Quality Report cites public research and law. Have someone review the "rules on one page" table before promoting it heavily.
+- [ ] The scorecard describes BootSoc's own standards (five checks, global suppression, certifications). Make sure these stay true.
+
 ## 2. Legal items needing counsel review
 - [ ] Privacy policy, cookie policy, terms, email policy and DPA page were drafted to current US, UK and Canadian law but **must be reviewed by a qualified lawyer**.
 - [ ] **Data broker registration:** if BootSoc maintains contact data about people it has no direct relationship with, register in California (Delete Act / DROP), Texas, Oregon and Vermont. The site already promises this "where required".
