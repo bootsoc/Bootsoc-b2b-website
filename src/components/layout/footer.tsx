@@ -27,17 +27,17 @@ export function Footer() {
             {footerNav.map((col) => (
               <nav key={col.title} aria-label={col.title}>
                 <h2 className="text-sm font-medium">{col.title}</h2>
-                <ul className="mt-4 grid gap-2.5">
+                <ul className="mt-2 grid md:mt-4 md:gap-2.5">
                   {col.links.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="text-sm text-muted transition-colors hover:text-fg">
+                      <Link href={l.href} className="inline-flex min-h-11 items-center text-sm text-muted transition-colors hover:text-fg md:min-h-0">
                         {l.label}
                       </Link>
                     </li>
                   ))}
                   {col.title === "Trust & legal" && (
                     <li>
-                      <PrivacyChoicesLink />
+                      <PrivacyChoicesLink className="min-h-11 md:min-h-0" />
                     </li>
                   )}
                 </ul>

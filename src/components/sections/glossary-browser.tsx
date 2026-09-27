@@ -62,7 +62,7 @@ export function GlossaryBrowser({ terms }: { terms: Term[] }) {
                 key={t.slug}
                 id={first ? `letter-${t.term[0].toUpperCase()}` : undefined}
                 layout={!reduce}
-                initial={reduce ? false : { opacity: 0 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}

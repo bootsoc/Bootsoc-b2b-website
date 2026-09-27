@@ -11,7 +11,8 @@ const lines = [
 ];
 
 /**
- * Entrance runs on CSS keyframes so the headline (the LCP element) paints before hydration.
+ * Entrance runs on CSS keyframes so the headline and intro paint before hydration. Nothing here starts at
+ * opacity 0 and delays stay short, because the intro paragraph is the mobile LCP element.
  * Only the scroll parallax on the image is JS-driven.
  */
 export function Hero() {
@@ -25,7 +26,7 @@ export function Hero() {
             {lines.map((line) => (
               <span key={line.join()} className="flex flex-wrap gap-x-[0.2em]">
                 {line.map((word) => {
-                  const delay = 80 + i++ * 70;
+                  const delay = i++ * 50;
                   return (
                     <span key={word} className="inline-block overflow-hidden pb-[0.06em]">
                       <span
@@ -43,7 +44,7 @@ export function Hero() {
         </h1>
 
         <div className="mt-10 grid gap-12 md:mt-14 lg:grid-cols-[1fr_1.55fr] lg:items-start lg:gap-16">
-          <div className="animate-fade-up lg:pt-4" style={{ animationDelay: "480ms" }}>
+          <div className="animate-lift lg:pt-4" style={{ animationDelay: "200ms" }}>
             <p className="max-w-[30rem] text-lg leading-relaxed text-muted md:text-xl">
               Intent-led syndication, ABM and demand programs for B2B tech. Every lead consented, human-verified and
               delivered to your spec.

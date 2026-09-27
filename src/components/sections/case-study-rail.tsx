@@ -25,9 +25,9 @@ export function CaseStudyRail({ items, title = "Results clients have signed off 
               {c.results && c.results.length > 0 && (
                 <dl className="mt-10 grid grid-cols-2 gap-4">
                   {c.results.slice(0, 2).map((r) => (
-                    <div key={r.label}>
-                      <dd className="display text-5xl text-signal [[data-theme=light]_&]:text-fg">{r.value}</dd>
+                    <div key={r.label} className="flex flex-col-reverse">
                       <dt className="mt-1 text-sm text-muted">{r.label}</dt>
+                      <dd className="display text-5xl text-signal [[data-theme=light]_&]:text-fg">{r.value}</dd>
                     </div>
                   ))}
                 </dl>

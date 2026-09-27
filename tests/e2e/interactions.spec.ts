@@ -20,7 +20,7 @@ test("pipeline calculator responds to the sliders", async ({ page }) => {
 });
 
 test("role tabs support arrow keys", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/solutions");
   const first = page.getByRole("tab", { name: "Demand gen leaders" });
   await first.focus();
   await page.keyboard.press("ArrowRight");

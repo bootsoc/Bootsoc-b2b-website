@@ -33,12 +33,19 @@ export function Certifications({ variant = "section" }: { variant?: "section" | 
         Your prospect data sits inside a certified security and quality program, so it clears procurement and InfoSec review faster.
       </p>
       <SpotlightGroup>
-        <RevealGroup className="mt-12 grid gap-3 md:grid-cols-3">
-          {certifications.map((c) => (
-            <RevealItem key={c.id} className="spotlight flex flex-col gap-8 rounded-[1.5rem] bg-raise p-7 ring-1 ring-line md:p-8">
+        {/* Asymmetric: the lead certification takes the tall cell, the other two stack beside it. */}
+        <RevealGroup className="mt-12 grid gap-3 md:grid-cols-[1.25fr_1fr]">
+          {certifications.map((c, i) => (
+            <RevealItem
+              key={c.id}
+              className={cn(
+                "spotlight flex gap-8 rounded-[1.5rem] bg-raise p-7 ring-1 ring-line md:p-8",
+                i === 0 ? "flex-col justify-between md:row-span-2 md:p-10" : "flex-col sm:flex-row sm:items-center",
+              )}
+            >
               <CertSeal top={c.top} code={c.code} />
               <div>
-                <h3 className="text-xl font-medium">{c.name}</h3>
+                <h3 className={cn("font-medium", i === 0 ? "display-md text-3xl md:text-4xl" : "text-xl")}>{c.name}</h3>
                 <p className="mt-1 text-sm text-signal [[data-theme=light]_&]:text-fg">{c.title}</p>
                 <p className="mt-3 text-muted">{c.body}</p>
               </div>

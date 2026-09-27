@@ -89,7 +89,7 @@ export function RolesTabs() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={role.id}
-              initial={reduce ? false : { opacity: 0, y: 16, filter: "blur(4px)" }}
+              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, filter: "blur(4px)" }}
               transition={{ duration: 0.45, ease }}
@@ -101,7 +101,7 @@ export function RolesTabs() {
                   {role.points.map((p, i) => (
                     <motion.li
                       key={p}
-                      initial={reduce ? false : { opacity: 0, x: -8 }}
+                      initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: 0.12 + i * 0.06, ease }}
                       className="flex items-start gap-3 text-lg"

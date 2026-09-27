@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { themeScript } from "@/components/layout/theme-toggle";
+import { MotionProvider } from "@/components/motion/motion-provider";
 import { ConsentManager } from "@/components/consent/consent-manager";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
@@ -36,7 +37,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0b0b0a",
+  // Matches --bg; the theme script corrects it before paint when a saved choice differs from the system setting.
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f5f4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b0a" },
+  ],
   colorScheme: "dark light",
 };
 
@@ -91,6 +96,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
             hasCertification: certifications.map((c) => ({ "@type": "Certification", name: c.name })),
           }}
         />
+        <MotionProvider>
         <ScrollProgress />
         <Header />
         <main id="main" tabIndex={-1} className="outline-none">
@@ -98,6 +104,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <ConsentManager />
+        </MotionProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -7,6 +7,7 @@ import { Faq } from "@/components/sections/faq";
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { site } from "@/content/site";
 import { Certifications } from "@/components/sections/certifications";
+import { Regions } from "@/components/sections/regions";
 
 export const metadata: Metadata = {
   title: "Data and trust center",
@@ -102,6 +103,7 @@ export default function TrustPage() {
       />
 
       <Certifications variant="trust" />
+      <Regions />
 
       <section aria-labelledby="sources-heading" className="shell py-16 md:py-24">
         <h2 id="sources-heading" className="display max-w-[14ch] text-[clamp(2.5rem,5vw,4.5rem)]">

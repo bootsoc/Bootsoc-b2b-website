@@ -5,6 +5,8 @@ import Link from "next/link";
 import { ArrowUpRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { PageHero } from "@/components/sections/page-hero";
 import { CtaBand } from "@/components/sections/cta-band";
+import { RolesTabs } from "@/components/sections/roles-tabs";
+import { Industries } from "@/components/sections/industries";
 import { RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { services } from "@/content/services";
 
@@ -68,6 +70,8 @@ export default function SolutionsPage() {
           ))}
         </RevealGroup>
       </section>
+      <RolesTabs />
+      <Industries />
       <CtaBand />
     </>
   );

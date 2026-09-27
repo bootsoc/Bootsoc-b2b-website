@@ -111,7 +111,7 @@ export function Header() {
                     {solutionsOpen && (
                       <motion.div
                         id={megaId}
-                        initial={reduce ? false : { opacity: 0, y: 8, scale: 0.98 }}
+                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={reduce ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
                         transition={{ duration: 0.35, ease }}
@@ -218,7 +218,7 @@ export function Header() {
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
-            initial={reduce ? false : { opacity: 0 }}
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35, ease }}
@@ -230,7 +230,7 @@ export function Header() {
                   (item, i) => (
                     <motion.li
                       key={item.href}
-                      initial={reduce ? false : { opacity: 0, y: 32 }}
+                      initial={{ opacity: 0, y: 32 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.05 + i * 0.05, ease }}
                     >
@@ -242,7 +242,7 @@ export function Header() {
                 )}
               </ul>
               <motion.ul
-                initial={reduce ? false : { opacity: 0 }}
+                initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.5 }}
                 className="mt-10 grid grid-cols-1 gap-x-6 gap-y-3 border-t border-line pt-6 sm:grid-cols-2"

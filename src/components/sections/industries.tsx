@@ -2,18 +2,18 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
+import { AnimatePresence, motion, useMotionValue, useSpring } from "motion/react";
 import { industries } from "@/content/audiences";
 import { cn } from "@/lib/utils";
 import { SplitHeading } from "@/components/motion/split-heading";
 
 /**
  * Large-type industry list. On desktop a photo preview follows the cursor (spring-smoothed motion values,
- * no re-render per frame) and swaps as you move between rows. Touch and keyboard users get the same
- * detail inline via focus.
+ * no re-render per frame) and swaps as you move between rows. Every row already shows its full detail inline,
+ * so touch, keyboard and reduced-motion users lose nothing. The preview is hidden by CSS under reduced motion
+ * (not by a JS branch) so server and client HTML match.
  */
 export function Industries() {
-  const reduce = useReducedMotion();
   const listRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState<number | null>(null);
   const x = useMotionValue(0);
@@ -46,12 +46,7 @@ export function Industries() {
             onPointerEnter={(e) => e.pointerType === "mouse" && setActive(i)}
             className="group relative border-b border-line"
           >
-            <div
-              tabIndex={0}
-              onFocus={() => setActive(i)}
-              onBlur={() => setActive(null)}
-              className="grid items-baseline gap-2 py-6 outline-none md:grid-cols-[1fr_1.1fr] md:gap-10 md:py-7"
-            >
+            <div className="grid items-baseline gap-2 py-6 md:grid-cols-[1fr_1.1fr] md:gap-10 md:py-7">
               <h3
                 className={cn(
                   "display-md text-[clamp(1.75rem,3.4vw,3rem)] transition-[color,transform] duration-500 ease-out-expo",
@@ -73,10 +68,9 @@ export function Industries() {
         ))}
         </ul>
 
-        {!reduce && (
-          <motion.div
+        <motion.div
             aria-hidden="true"
-            className="pointer-events-none absolute left-0 top-0 z-10 hidden lg:block"
+            className="pointer-events-none absolute left-0 top-0 z-10 hidden lg:block motion-reduce:lg:hidden"
             style={{ x: sx, y: sy }}
           >
             <AnimatePresence>
@@ -104,7 +98,6 @@ export function Industries() {
               )}
             </AnimatePresence>
           </motion.div>
-        )}
       </div>
     </section>
   );

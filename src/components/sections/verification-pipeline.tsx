@@ -15,13 +15,13 @@ const gates = [
     title: "Consent captured",
     body: "Opt-in language, timestamp and source page are stored with the record, so you can prove it later.",
     field: "Consent",
-    value: "Opt-in recorded 14 Aug, 10:42 ET",
+    value: "Opt-in recorded 14\u00a0Aug, 10:42\u00a0ET",
   },
   {
     title: "Engagement confirmed",
     body: "We check the person actually opened and read the asset, and filter out bot and click-farm patterns.",
     field: "Engagement",
-    value: "Read 4 min 12 s of the report",
+    value: "Read 4\u00a0min 12\u00a0s of the report",
   },
   {
     title: "Identity and role verified",
@@ -106,8 +106,9 @@ export function VerificationPipeline() {
                   >
                     {done ? <CheckIcon size={16} weight="bold" aria-hidden="true" /> : i + 1}
                   </span>
-                  <div className={cn("transition-opacity duration-500", done || current ? "opacity-100" : "opacity-45")}>
-                    <h3 className="font-medium">{g.title}</h3>
+                  <div>
+                    {/* Pending steps dim by colour, not opacity, so they keep AA contrast. */}
+                    <h3 className={cn("font-medium transition-colors duration-500", done || current ? "text-fg" : "text-muted")}>{g.title}</h3>
                     <p className="mt-1 max-w-[46ch] text-sm leading-relaxed text-muted">{g.body}</p>
                   </div>
                 </li>
@@ -137,12 +138,12 @@ export function VerificationPipeline() {
                   <div
                     key={g.field}
                     className={cn(
-                      "grid grid-cols-[6.5rem_1fr_auto] items-center gap-3 rounded-xl px-4 py-3 ring-1 transition-[background-color,box-shadow] duration-500",
+                      "grid grid-cols-[4.75rem_1fr_auto] items-center gap-3 rounded-xl px-3.5 py-3 ring-1 sm:grid-cols-[6.5rem_1fr_auto] sm:px-4 transition-[background-color,box-shadow] duration-500",
                       done ? "bg-bg ring-line" : "bg-bg/40 ring-transparent",
                     )}
                   >
                     <dt className="text-sm text-muted">{g.field}</dt>
-                    <dd className={cn("font-mono text-sm tabular transition-opacity duration-500", done ? "opacity-100" : "opacity-30")}>
+                    <dd className={cn("text-sm tabular transition-opacity duration-500 sm:font-mono", done ? "opacity-100" : "opacity-30")}>
                       {done ? g.value : "Pending check…"}
                     </dd>
                     <span

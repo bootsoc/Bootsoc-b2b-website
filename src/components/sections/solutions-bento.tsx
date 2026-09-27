@@ -33,11 +33,11 @@ function cell(slug: string, className: string, tone: Cell["tone"], withImage = f
 }
 
 const cells: Cell[] = [
-  cell("intent-data", "lg:col-span-4 lg:row-span-2 min-h-[26rem]", "signal"),
+  cell("intent-data", "lg:col-span-4 lg:row-span-2 lg:min-h-[26rem]", "signal"),
   cell("content-syndication", "lg:col-span-2", "plain"),
   cell("demand-generation", "lg:col-span-2", "plain"),
-  cell("account-based-marketing", "lg:col-span-3 min-h-[22rem]", "image", true),
-  cell("programmatic-display", "lg:col-span-3 min-h-[22rem]", "image", true),
+  cell("account-based-marketing", "lg:col-span-3 min-h-[18rem] lg:min-h-[22rem]", "image", true),
+  cell("programmatic-display", "lg:col-span-3 min-h-[18rem] lg:min-h-[22rem]", "image", true),
   cell("event-registration", "lg:col-span-2", "plain"),
   cell("appointment-setting", "lg:col-span-2", "plain"),
   {
@@ -98,7 +98,7 @@ export function SolutionsBento() {
                   <ArrowUpRightIcon size={18} weight="bold" />
                 </span>
               </span>
-              <span className={cn("relative mt-10 block max-w-[40ch]", c.tone === "signal" ? "text-lg text-on-signal/80" : c.tone === "image" ? "text-white/80" : "text-muted")}>
+              <span className={cn("relative mt-6 block max-w-[40ch] md:mt-10", c.tone === "signal" ? "text-lg text-on-signal/80" : c.tone === "image" ? "text-white/80" : "text-muted")}>
                 {c.tone === "signal" && <span className="mb-3 block text-sm font-medium text-on-signal">Intent data, activated</span>}
                 {c.body}
               </span>

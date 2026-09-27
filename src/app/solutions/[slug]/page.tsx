@@ -131,8 +131,8 @@ export default async function ServicePage({ params }: PageProps<"/solutions/[slu
           <Reveal delay={0.08} className="grid gap-3">
             {s.guarantees.map((g) => (
               <div key={g.label} className="flex items-end justify-between gap-6 rounded-[1.5rem] bg-signal p-6 text-on-signal md:p-7">
-                <p className="display text-5xl">{g.value}</p>
-                <p className="max-w-[16ch] text-right text-sm font-medium text-on-signal/80">{g.label}</p>
+                <p className="display shrink-0 whitespace-nowrap text-[clamp(2.25rem,9vw,3rem)]">{g.value}</p>
+                <p className="min-w-0 max-w-[16ch] text-right text-sm font-medium text-on-signal/80">{g.label}</p>
               </div>
             ))}
           </Reveal>

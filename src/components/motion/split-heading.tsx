@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 type Tag = "h1" | "h2" | "h3";
@@ -10,7 +10,6 @@ type Tag = "h1" | "h2" | "h3";
  * full sentence (aria-label); the split, animated words are aria-hidden.
  */
 export function SplitHeading({ as = "h2", children, className, id }: { as?: Tag; children: string; className?: string; id?: string }) {
-  const reduce = useReducedMotion();
   const Comp = motion[as];
   const words = children.split(" ");
   return (
@@ -18,7 +17,7 @@ export function SplitHeading({ as = "h2", children, className, id }: { as?: Tag;
       id={id}
       aria-label={children}
       className={className}
-      initial={reduce ? false : "hidden"}
+      initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.5 }}
       variants={{ hidden: {}, show: { transition: { staggerChildren: 0.045 } } }}

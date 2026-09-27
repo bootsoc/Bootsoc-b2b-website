@@ -21,7 +21,9 @@ export function ThemeToggle() {
       type="button"
       onClick={() => {
         document.documentElement.dataset.theme = next;
-        document.querySelector('meta[name="theme-color"]')?.setAttribute("content", next === "dark" ? "#0b0b0a" : "#f5f5f4");
+        document
+          .querySelectorAll('meta[name="theme-color"]')
+          .forEach((m) => m.setAttribute("content", next === "dark" ? "#0b0b0a" : "#f5f5f4"));
         try {
           localStorage.setItem("bs-theme", next);
         } catch {}
@@ -34,5 +36,8 @@ export function ThemeToggle() {
   );
 }
 
-/** Inline, render-blocking script that applies the stored theme before first paint. */
-export const themeScript = `(()=>{try{var t=localStorage.getItem("bs-theme");document.documentElement.dataset.theme=t==="light"?"light":"dark"}catch(e){document.documentElement.dataset.theme="dark"}})()`;
+/**
+ * Inline, render-blocking script that applies the theme before first paint: the visitor's saved choice,
+ * otherwise their system preference. It also syncs the browser UI colour (theme-color meta).
+ */
+export const themeScript = `(()=>{var t;try{t=localStorage.getItem("bs-theme")}catch(e){}if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.theme=t;var c=t==="light"?"#f5f5f4":"#0b0b0a",f=function(){var m=document.querySelectorAll('meta[name="theme-color"]');m.forEach(function(e){e.setAttribute("content",c)});return m.length};f()||document.addEventListener("DOMContentLoaded",f)})()`;

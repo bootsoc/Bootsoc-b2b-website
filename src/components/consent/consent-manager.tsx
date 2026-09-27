@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Script from "next/script";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { consentStore, useConsent } from "@/components/consent/store";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
@@ -11,7 +11,6 @@ const LINKEDIN_ID = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
 
 export function ConsentManager() {
   const { ready, regime, consent, prefsOpen } = useConsent();
-  const reduce = useReducedMotion();
   const showBanner = ready && !consent.decidedAt && !prefsOpen;
 
   // Keep Google Consent Mode v2 in sync with the visitor's choice.
@@ -35,7 +34,8 @@ export function ConsentManager() {
 gtag('consent','default',{analytics_storage:'granted',ad_storage:'${consent.advertising ? "granted" : "denied"}',ad_user_data:'${consent.advertising ? "granted" : "denied"}',ad_personalization:'${consent.advertising ? "granted" : "denied"}'});
 gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
           </Script>
-          <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+          {/* The queue above records the page view immediately; the 170 KB library itself waits for browser idle. */}
+          <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="lazyOnload" />
         </>
       )}
       {LINKEDIN_ID && ready && consent.advertising && (
@@ -49,24 +49,24 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
         {showBanner && (
           <motion.section
             aria-label="Cookie choices"
-            initial={reduce ? false : { opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 16 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="fixed inset-x-3 bottom-3 z-[55] mx-auto max-w-xl rounded-[1.5rem] bg-raise/95 p-1.5 ring-1 ring-line shadow-[0_24px_80px_-20px_rgb(0_0_0/0.7)] backdrop-blur-xl sm:inset-x-auto sm:right-4 sm:bottom-4"
           >
-            <div className="rounded-[calc(1.5rem-6px)] bg-bg/60 p-5">
+            <div className="rounded-[calc(1.5rem-6px)] bg-bg/60 p-4 sm:p-5">
               {regime === "optin" ? (
                 <>
                   <h2 className="font-medium">Your cookie choices</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                  <p className="mt-1.5 text-[13px] leading-snug text-muted sm:mt-2 sm:text-sm sm:leading-relaxed">
                     We use essential cookies to run this site. With your permission we&apos;d also use analytics and
                     advertising cookies to understand visits and measure campaigns. Nothing optional loads until you choose.{" "}
                     <Link href="/cookies" className="underline underline-offset-2 hover:text-fg">
                       Cookie policy
                     </Link>
                   </p>
-                  <div className="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-3">
+                  <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4">
                     <BannerButton onClick={() => consentStore.save({ analytics: false, advertising: false })}>Reject all</BannerButton>
                     <BannerButton onClick={() => consentStore.openPrefs()}>Customize</BannerButton>
                     <BannerButton onClick={() => consentStore.save({ analytics: true, advertising: true })}>Accept all</BannerButton>
@@ -75,7 +75,7 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
               ) : (
                 <>
                   <h2 className="font-medium">Privacy notice</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                  <p className="mt-1.5 text-[13px] leading-snug text-muted sm:mt-2 sm:text-sm sm:leading-relaxed">
                     We use cookies for analytics and to measure advertising. You can opt out of the sale or sharing of
                     personal information at any time.
                     {consent.gpc && " We detected a Global Privacy Control signal and have turned off advertising cookies."}{" "}
@@ -83,7 +83,7 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
                       Privacy policy
                     </Link>
                   </p>
-                  <div className="mt-4 grid grid-cols-2 gap-2">
+                  <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-4">
                     <BannerButton onClick={() => consentStore.openPrefs()}>Manage choices</BannerButton>
                     <BannerButton onClick={() => consentStore.save({ analytics: consent.analytics, advertising: consent.advertising })}>
                       Got it
@@ -107,7 +107,7 @@ function BannerButton({ children, onClick }: { children: React.ReactNode; onClic
     <button
       type="button"
       onClick={onClick}
-      className="min-h-11 rounded-full bg-fg px-4 text-sm font-medium text-bg transition-transform active:scale-[0.98]"
+      className="min-h-11 whitespace-nowrap rounded-full bg-fg px-3 text-sm font-medium text-bg transition-transform active:scale-[0.98] sm:px-4"
     >
       {children}
     </button>

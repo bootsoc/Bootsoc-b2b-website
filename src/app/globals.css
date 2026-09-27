@@ -490,7 +490,14 @@ details[open]::details-content {
 .range-signal:focus-visible::-webkit-slider-thumb {
   box-shadow: 0 0 0 4px color-mix(in oklab, var(--signal) 40%, transparent);
 }
-[data-theme="light"] .range-signal::-webkit-slider-thumb,
+.range-signal:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--signal) 40%, transparent);
+}
+/* Vendor pseudo-elements live in separate rules: a browser drops a whole rule if any selector in it is unknown. */
+[data-theme="light"] .range-signal::-webkit-slider-thumb {
+  border-color: var(--fg);
+  background: var(--signal);
+}
 [data-theme="light"] .range-signal::-moz-range-thumb {
   border-color: var(--fg);
   background: var(--signal);

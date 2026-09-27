@@ -55,6 +55,10 @@ async function guard(formData: FormData): Promise<Guard> {
 
   if (process.env.TURNSTILE_SECRET_KEY) {
     const token = String(formData.get("cf-turnstile-response") ?? "");
+    // The widget loads when the visitor starts on the form, so a very fast submit can beat the token.
+    if (!token) {
+      return { ok: false, state: { status: "error", message: "Still checking you're human. Wait a second, then send the form again." } };
+    }
     const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
       method: "POST",
       body: new URLSearchParams({ secret: process.env.TURNSTILE_SECRET_KEY, response: token }),
