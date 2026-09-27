@@ -143,7 +143,7 @@ export function VerificationPipeline() {
                     )}
                   >
                     <dt className="text-sm text-muted">{g.field}</dt>
-                    <dd className={cn("text-sm tabular transition-opacity duration-500 sm:font-mono", done ? "opacity-100" : "opacity-30")}>
+                    <dd className={cn("text-sm tabular transition-colors duration-500 sm:font-mono", done ? "text-fg" : "text-muted")}>
                       {done ? g.value : "Pending check…"}
                     </dd>
                     <span
