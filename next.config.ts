@@ -73,7 +73,16 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return legacy.map(([source, destination]) => ({ source, destination, permanent: true }));
+    return [
+      // One canonical host: www.bootsoc.com permanently redirects to bootsoc.com.
+      {
+        source: "/:path*",
+        has: [{ type: "host" as const, value: "www.bootsoc.com" }],
+        destination: "https://bootsoc.com/:path*",
+        permanent: true,
+      },
+      ...legacy.map(([source, destination]) => ({ source, destination, permanent: true })),
+    ];
   },
 };
 
