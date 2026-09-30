@@ -247,12 +247,18 @@ export function SubmitButton({
       disabled={pending}
       aria-disabled={pending}
       className={cn(
-        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-signal px-7 font-medium text-on-signal transition-[background-color,transform] duration-300 hover:bg-signal-press active:scale-[0.98] disabled:cursor-progress disabled:opacity-70",
+        "inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-signal px-7 font-medium text-on-signal transition-[background-color,transform] duration-160 ease-out hover:bg-signal-press active:scale-[0.97] disabled:cursor-progress disabled:opacity-70",
         className,
       )}
     >
-      {pending && <span aria-hidden="true" className="size-4 animate-spin rounded-full border-2 border-on-signal/30 border-t-on-signal" />}
-      {pending ? pendingLabel : children}
+      {/* key remounts the label so it enters with a short blur-fade instead of swapping text abruptly. */}
+      <span
+        key={pending ? "pending" : "idle"}
+        className="inline-flex items-center gap-2 transition-[opacity,filter] duration-200 ease-out starting:opacity-0 starting:blur-[2px]"
+      >
+        {pending && <span aria-hidden="true" className="size-4 animate-spin rounded-full border-2 border-on-signal/30 border-t-on-signal" />}
+        {pending ? pendingLabel : children}
+      </span>
     </button>
   );
 }
@@ -263,7 +269,8 @@ export function FormMessage({ state }: { state: FormState }) {
       {state.status !== "idle" && state.message && (
         <p
           className={cn(
-            "flex items-start gap-2 rounded-xl px-4 py-3 text-sm ring-1",
+            // Enters with @starting-style: a short rise + fade so the result doesn't pop in.
+            "flex items-start gap-2 rounded-xl px-4 py-3 text-sm ring-1 transition-[opacity,transform] duration-300 ease-out starting:translate-y-1 starting:opacity-0",
             state.status === "success" ? "bg-ok/10 text-fg ring-ok/40" : "bg-danger/10 text-fg ring-danger/40",
           )}
         >

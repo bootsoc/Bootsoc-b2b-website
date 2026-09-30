@@ -9,7 +9,7 @@ import { getService } from "@/content/services";
 import { cn } from "@/lib/utils";
 import { SplitHeading } from "@/components/motion/split-heading";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+const ease = [0.23, 1, 0.32, 1] as const;
 
 /** WAI-ARIA tabs (arrow keys, Home/End) with a gliding indicator and a soft panel crossfade. */
 export function RolesTabs() {
@@ -61,7 +61,7 @@ export function RolesTabs() {
               e.currentTarget.scrollIntoView({ block: "nearest", inline: "nearest", behavior: reduce ? "auto" : "smooth" });
             }}
             className={cn(
-              "relative min-h-11 shrink-0 whitespace-nowrap rounded-full px-5 text-sm font-medium transition-colors duration-300",
+              "relative min-h-11 shrink-0 whitespace-nowrap rounded-full px-5 text-sm font-medium transition-[color,transform] duration-200 ease-out active:scale-[0.97]",
               i === active ? "text-on-signal" : "text-muted hover:text-fg",
             )}
           >
@@ -70,7 +70,7 @@ export function RolesTabs() {
                 layoutId={`${baseId}-tab-pill`}
                 aria-hidden="true"
                 className="absolute inset-0 rounded-full bg-signal"
-                transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 380, damping: 32 }}
+                transition={reduce ? { duration: 0 } : { type: "spring", duration: 0.3, bounce: 0 }}
               />
             )}
             <span className="relative">{r.label}</span>
@@ -89,10 +89,11 @@ export function RolesTabs() {
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={role.id}
-              initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              exit={reduce ? { opacity: 0 } : { opacity: 0, y: -10, filter: "blur(4px)" }}
-              transition={{ duration: 0.45, ease }}
+              // Asymmetric: the old panel clears fast (120ms), the new one settles in 250ms. A 2px blur
+              // bridges the cross-fade so it reads as one change rather than two panels swapping.
+              initial={{ opacity: 0, y: 8, filter: "blur(2px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.25, ease } }}
+              exit={reduce ? { opacity: 0, transition: { duration: 0.12 } } : { opacity: 0, y: -4, filter: "blur(2px)", transition: { duration: 0.12, ease } }}
               className="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:gap-16"
             >
               <div>
@@ -101,9 +102,9 @@ export function RolesTabs() {
                   {role.points.map((p, i) => (
                     <motion.li
                       key={p}
-                      initial={{ opacity: 0, x: -8 }}
+                      initial={{ opacity: 0, x: -6 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.4, delay: 0.12 + i * 0.06, ease }}
+                      transition={{ duration: 0.25, delay: 0.05 + i * 0.04, ease }}
                       className="flex items-start gap-3 text-lg"
                     >
                       <span aria-hidden="true" className="mt-1 grid size-6 shrink-0 place-items-center rounded-full bg-signal text-on-signal">
@@ -126,7 +127,7 @@ export function RolesTabs() {
                           className="group flex items-center justify-between gap-4 rounded-2xl bg-bg/60 px-5 py-4 ring-1 ring-line transition-[box-shadow] hover:ring-fg/30"
                         >
                           <span className="font-medium">{s.product ?? s.name}</span>
-                          <ArrowRightIcon size={18} aria-hidden="true" className="text-muted transition-transform duration-300 group-hover:translate-x-1" />
+                          <ArrowRightIcon size={18} aria-hidden="true" className="text-muted transition-transform duration-200 ease-out group-hover:translate-x-1" />
                         </Link>
                       </li>
                     );

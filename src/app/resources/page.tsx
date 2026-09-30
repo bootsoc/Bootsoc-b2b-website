@@ -48,7 +48,7 @@ export default async function ResourcesPage() {
               <Link href={`/resources/${lead.slug}`} className="group grid gap-8 rounded-[2rem] bg-raise p-2 ring-1 ring-line lg:grid-cols-[1.3fr_1fr] lg:items-center">
                 {lead.coverUrl && (
                   <div className="relative aspect-[16/10] overflow-hidden rounded-[calc(2rem-8px)]">
-                    <Image src={lead.coverUrl} alt={lead.coverAlt ?? ""} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.03]" />
+                    <Image src={lead.coverUrl} alt={lead.coverAlt ?? ""} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
                   </div>
                 )}
                 <div className="p-6 lg:p-10">

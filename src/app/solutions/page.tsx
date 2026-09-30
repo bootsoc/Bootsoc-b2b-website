@@ -50,7 +50,7 @@ export default function SolutionsPage() {
                     alt=""
                     fill
                     sizes="(min-width: 768px) 14rem, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                   />
                 </div>
                 </ViewTransition>
@@ -61,7 +61,7 @@ export default function SolutionsPage() {
                 </div>
                 <span
                   aria-hidden="true"
-                  className="mx-2 grid size-12 place-items-center rounded-full ring-1 ring-line transition-[transform,background-color,color] duration-500 ease-out-expo group-hover:rotate-45 group-hover:bg-signal group-hover:text-on-signal md:mx-4"
+                  className="mx-2 grid size-12 place-items-center rounded-full ring-1 ring-line transition-[transform,background-color,color] duration-250 ease-out group-hover:rotate-45 group-hover:bg-signal group-hover:text-on-signal md:mx-4"
                 >
                   <ArrowUpRightIcon size={20} weight="bold" />
                 </span>

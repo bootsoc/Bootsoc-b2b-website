@@ -11,7 +11,8 @@ import { primaryNav } from "@/content/site";
 import { services } from "@/content/services";
 import { cn } from "@/lib/utils";
 
-const ease = [0.16, 1, 0.3, 1] as const;
+// Strong ease-out for UI entering and exiting.
+const ease = [0.23, 1, 0.32, 1] as const;
 
 export function Header() {
   const pathname = usePathname();
@@ -104,17 +105,16 @@ export function Header() {
                       size={14}
                       weight="bold"
                       aria-hidden="true"
-                      className={cn("transition-transform duration-300", solutionsOpen && "rotate-180")}
+                      className={cn("transition-transform duration-200 ease-out", solutionsOpen && "rotate-180")}
                     />
                   </button>
                   <AnimatePresence>
                     {solutionsOpen && (
                       <motion.div
                         id={megaId}
-                        initial={{ opacity: 0, y: 8, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={reduce ? { opacity: 0 } : { opacity: 0, y: 6, scale: 0.98 }}
-                        transition={{ duration: 0.35, ease }}
+                        initial={{ opacity: 0, y: -4, scale: 0.97 }}
+                        animate={{ opacity: 1, y: 0, scale: 1, transition: { duration: 0.2, ease } }}
+                        exit={reduce ? { opacity: 0 } : { opacity: 0, y: -4, scale: 0.98, transition: { duration: 0.12, ease } }}
                         className="absolute left-1/2 top-full mt-3 w-[min(46rem,90vw)] -translate-x-1/2 origin-top rounded-[1.5rem] bg-raise/95 p-1.5 ring-1 ring-line shadow-[0_30px_80px_-20px_rgb(0_0_0/0.6)] backdrop-blur-xl"
                       >
                         <div className="grid grid-cols-[1fr_15rem] gap-1.5">
@@ -179,13 +179,13 @@ export function Header() {
               <ThemeToggle />
               <Link
                 href="/contact"
-                className="hidden min-h-11 items-center rounded-full bg-signal px-5 whitespace-nowrap text-sm font-medium text-on-signal transition-colors hover:bg-signal-press sm:inline-flex"
+                className="hidden min-h-11 items-center rounded-full bg-signal px-5 whitespace-nowrap text-sm font-medium text-on-signal transition-[background-color,transform] duration-160 ease-out hover:bg-signal-press active:scale-[0.97] sm:inline-flex"
               >
                 Book a strategy call
               </Link>
               <button
                 type="button"
-                className="relative grid size-11 place-items-center rounded-full ring-1 ring-line xl:hidden"
+                className="relative grid size-11 place-items-center rounded-full ring-1 ring-line transition-transform duration-160 ease-out active:scale-[0.94] xl:hidden"
                 aria-expanded={open}
                 aria-controls={menuId}
                 aria-label={open ? "Close menu" : "Open menu"}
@@ -194,14 +194,14 @@ export function Header() {
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "absolute h-[1.5px] w-5 bg-fg transition-transform duration-500 ease-out-expo",
+                    "absolute h-[1.5px] w-5 bg-fg transition-transform duration-300 ease-in-out",
                     open ? "rotate-45" : "-translate-y-[4px]",
                   )}
                 />
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "absolute h-[1.5px] w-5 bg-fg transition-transform duration-500 ease-out-expo",
+                    "absolute h-[1.5px] w-5 bg-fg transition-transform duration-300 ease-in-out",
                     open ? "-rotate-45" : "translate-y-[4px]",
                   )}
                 />
@@ -219,9 +219,8 @@ export function Header() {
             aria-modal="true"
             aria-label="Site menu"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease }}
+            animate={{ opacity: 1, transition: { duration: 0.25, ease } }}
+            exit={{ opacity: 0, transition: { duration: 0.15, ease } }}
             className="fixed inset-0 z-40 overflow-y-auto overscroll-contain bg-bg/95 pb-10 pt-28 backdrop-blur-2xl xl:hidden"
           >
             <nav aria-label="Mobile" className="shell">
@@ -230,9 +229,9 @@ export function Header() {
                   (item, i) => (
                     <motion.li
                       key={item.href}
-                      initial={{ opacity: 0, y: 32 }}
+                      initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.6, delay: 0.05 + i * 0.05, ease }}
+                      transition={{ duration: 0.35, delay: 0.03 + i * 0.04, ease }}
                     >
                       <Link href={item.href} className="display block py-2 text-5xl">
                         {item.label}
@@ -244,7 +243,7 @@ export function Header() {
               <motion.ul
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.4, duration: 0.5 }}
+                transition={{ delay: 0.2, duration: 0.3 }}
                 className="mt-10 grid grid-cols-1 gap-x-6 gap-y-3 border-t border-line pt-6 sm:grid-cols-2"
               >
                 {services.map((s) => (
@@ -257,7 +256,7 @@ export function Header() {
               </motion.ul>
               <Link
                 href="/contact"
-                className="mt-10 inline-flex min-h-12 items-center rounded-full bg-signal px-6 font-medium text-on-signal"
+                className="mt-10 inline-flex min-h-12 items-center rounded-full bg-signal px-6 font-medium text-on-signal transition-transform duration-160 ease-out active:scale-[0.97]"
               >
                 Book a strategy call
               </Link>

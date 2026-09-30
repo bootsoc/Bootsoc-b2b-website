@@ -32,7 +32,7 @@ export function Integrations() {
               aria-pressed={filter === c}
               onClick={() => setFilter(c)}
               className={cn(
-                "relative min-h-10 rounded-full px-4 text-sm transition-colors duration-300",
+                "relative min-h-10 rounded-full px-4 text-sm transition-[color,transform] duration-200 ease-out active:scale-[0.97]",
                 filter === c ? "font-medium text-on-signal" : "text-muted ring-1 ring-line hover:text-fg",
               )}
             >
@@ -41,7 +41,7 @@ export function Integrations() {
                   layoutId="integration-filter"
                   aria-hidden="true"
                   className="absolute inset-0 rounded-full bg-signal"
-                  transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 400, damping: 32 }}
+                  transition={reduce ? { duration: 0 } : { type: "spring", duration: 0.3, bounce: 0 }}
                 />
               )}
               <span className="relative">{c}</span>
@@ -55,10 +55,10 @@ export function Integrations() {
               <motion.li
                 key={i.name}
                 layout={!reduce}
-                initial={{ opacity: 0, scale: 0.92 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={reduce ? { opacity: 0 } : { opacity: 0, scale: 0.92 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1, transition: { duration: 0.22, ease: [0.23, 1, 0.32, 1] } }}
+                exit={reduce ? { opacity: 0, transition: { duration: 0.12 } } : { opacity: 0, scale: 0.96, transition: { duration: 0.12, ease: [0.23, 1, 0.32, 1] } }}
+                transition={{ layout: { type: "spring", duration: 0.3, bounce: 0 } }}
                 className="spotlight flex min-h-28 flex-col justify-between rounded-[1.25rem] bg-raise p-4 ring-1 ring-line"
               >
                 <span className="font-medium leading-snug">{i.name}</span>

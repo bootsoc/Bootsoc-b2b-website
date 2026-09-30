@@ -12,7 +12,7 @@ type BaseProps = {
 };
 
 const base =
-  "group relative inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-full text-[0.95rem] font-medium transition-[background-color,color,box-shadow,transform] duration-300 ease-out-expo active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60";
+  "group relative inline-flex items-center justify-center gap-3 whitespace-nowrap rounded-full text-[0.95rem] font-medium transition-[background-color,color,box-shadow,transform] duration-160 ease-out active:scale-[0.97] disabled:pointer-events-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   primary: "bg-signal text-on-signal hover:bg-signal-press shadow-[inset_0_1px_0_rgba(255,255,255,0.45)]",
@@ -28,7 +28,7 @@ function Inner({ children, icon, variant }: { children: React.ReactNode; icon?: 
         <span
           aria-hidden="true"
           className={cn(
-            "grid size-8 place-items-center rounded-full transition-transform duration-300 ease-out-expo group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105",
+            "grid size-8 place-items-center rounded-full transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105",
             variant === "primary" ? "bg-on-signal/10" : "bg-fg/10",
           )}
         >

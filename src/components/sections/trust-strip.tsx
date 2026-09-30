@@ -31,7 +31,7 @@ export function TrustStrip() {
               className="group inline-flex min-h-11 w-fit items-center gap-2 font-medium underline decoration-line underline-offset-4 transition-colors hover:decoration-signal"
             >
               Visit the trust center
-              <ArrowUpRightIcon size={16} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
+              <ArrowUpRightIcon size={16} weight="bold" aria-hidden="true" className="transition-transform duration-200 ease-out group-hover:rotate-45" />
             </Link>
           </div>
 

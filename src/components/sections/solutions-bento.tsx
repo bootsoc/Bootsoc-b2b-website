@@ -66,7 +66,7 @@ export function SolutionsBento() {
             <Link
               href={c.href}
               className={cn(
-                "spotlight group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 ring-1 transition-[box-shadow,transform] duration-500 ease-out-expo hover:-translate-y-0.5 md:p-7",
+                "spotlight group relative flex h-full flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 ring-1 transition-[box-shadow,transform] duration-250 ease-out hover:-translate-y-0.5 active:scale-[0.99] md:p-7",
                 c.tone === "signal" && "bg-signal text-on-signal ring-transparent",
                 c.tone === "plain" && "bg-raise ring-line hover:ring-fg/25",
                 c.tone === "image" && "bg-raise text-[#f4f4ef] ring-line",
@@ -79,7 +79,7 @@ export function SolutionsBento() {
                     alt={c.imageAlt ?? ""}
                     fill
                     sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 ease-out-expo group-hover:scale-[1.04]"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                   />
                   <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/5" />
                 </>
@@ -91,7 +91,7 @@ export function SolutionsBento() {
                 <span
                   aria-hidden="true"
                   className={cn(
-                    "grid size-10 shrink-0 place-items-center rounded-full transition-transform duration-500 ease-out-expo group-hover:rotate-45",
+                    "grid size-10 shrink-0 place-items-center rounded-full transition-transform duration-250 ease-out group-hover:rotate-45",
                     c.tone === "signal" ? "bg-on-signal text-signal" : c.tone === "image" ? "bg-white/15" : "bg-fg/10",
                   )}
                 >

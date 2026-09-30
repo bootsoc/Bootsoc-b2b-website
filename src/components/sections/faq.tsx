@@ -20,12 +20,12 @@ export function Faq({ items, title = "Questions buyers ask us", id = "faq" }: { 
         </SplitHeading>
         <div className="divide-y divide-line border-y border-line">
           {items.map((f) => (
-            <details key={f.q} className="group">
+            <details key={f.q} className="disclosure group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 text-lg font-medium [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span
                   aria-hidden="true"
-                  className="grid size-9 shrink-0 place-items-center rounded-full ring-1 ring-line transition-transform duration-300 ease-out-expo group-open:rotate-45 group-open:bg-signal group-open:text-on-signal group-open:ring-signal"
+                  className="grid size-9 shrink-0 place-items-center rounded-full ring-1 ring-line transition-[transform,background-color,color] duration-200 ease-out group-open:rotate-45 group-open:bg-signal group-open:text-on-signal group-open:ring-signal"
                 >
                   <PlusIcon size={16} weight="bold" />
                 </span>

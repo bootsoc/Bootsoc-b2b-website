@@ -49,10 +49,10 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
         {showBanner && (
           <motion.section
             aria-label="Cookie choices"
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 16 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            // Rises from the edge it lives on, and leaves faster than it arrived (the visitor has already decided).
+            initial={{ opacity: 0, y: "30%" }}
+            animate={{ opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.32, 0.72, 0, 1] } }}
+            exit={{ opacity: 0, y: "20%", transition: { duration: 0.18, ease: [0.23, 1, 0.32, 1] } }}
             className="fixed inset-x-3 bottom-3 z-[55] mx-auto max-w-xl rounded-[1.5rem] bg-raise/95 p-1.5 ring-1 ring-line shadow-[0_24px_80px_-20px_rgb(0_0_0/0.7)] backdrop-blur-xl sm:inset-x-auto sm:right-4 sm:bottom-4"
           >
             <div className="rounded-[calc(1.5rem-6px)] bg-bg/60 p-4 sm:p-5">
@@ -137,7 +137,7 @@ function PreferencesDialog() {
       ref={ref}
       onClose={() => consentStore.closePrefs()}
       aria-labelledby="prefs-title"
-      className="m-auto w-[min(34rem,calc(100vw-2rem))] rounded-[1.5rem] bg-raise p-0 text-fg ring-1 ring-line backdrop:bg-black/60 backdrop:backdrop-blur-sm"
+      className="prefs-dialog m-auto w-[min(34rem,calc(100vw-2rem))] rounded-[1.5rem] bg-raise p-0 text-fg ring-1 ring-line backdrop:bg-black/60 backdrop:backdrop-blur-sm"
     >
       <div className="p-6">
         <h2 id="prefs-title" className="display-md text-3xl">
@@ -222,7 +222,7 @@ function PrefRow({
             onChange={(e) => onChange?.(e.target.checked)}
           />
           <span className="h-7 w-12 rounded-full bg-line transition-colors peer-checked:bg-signal peer-disabled:opacity-60 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-signal" />
-          <span className="absolute left-1 top-1 size-5 rounded-full bg-fg transition-transform duration-300 ease-out-expo peer-checked:translate-x-5 peer-checked:bg-on-signal" />
+          <span className="absolute left-1 top-1 size-5 rounded-full bg-fg transition-[transform,background-color] duration-200 ease-out peer-checked:translate-x-5 peer-checked:bg-on-signal" />
         </span>
       </label>
     </li>

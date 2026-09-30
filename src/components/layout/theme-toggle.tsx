@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { MoonIcon, SunIcon } from "@phosphor-icons/react";
+import { cn } from "@/lib/utils";
 
 type Theme = "dark" | "light";
 
@@ -29,9 +30,25 @@ export function ThemeToggle() {
         } catch {}
       }}
       aria-label={`Switch to ${next} theme`}
-      className="grid size-11 place-items-center rounded-full text-muted transition-colors hover:bg-raise hover:text-fg"
+      className="grid size-11 place-items-center rounded-full text-muted transition-[background-color,color,transform] duration-160 ease-out hover:bg-raise hover:text-fg active:scale-[0.94]"
     >
-      {theme === "dark" ? <SunIcon size={18} aria-hidden="true" /> : <MoonIcon size={18} aria-hidden="true" />}
+      {/* Both icons stay mounted and cross-fade with a slight scale and blur, so the swap reads as one change. */}
+      <span aria-hidden="true" className="grid [&>*]:col-start-1 [&>*]:row-start-1">
+        <SunIcon
+          size={18}
+          className={cn(
+            "transition-[opacity,transform,filter] duration-200 ease-out",
+            theme === "dark" ? "scale-100 opacity-100 blur-0" : "scale-75 -rotate-45 opacity-0 blur-[2px]",
+          )}
+        />
+        <MoonIcon
+          size={18}
+          className={cn(
+            "transition-[opacity,transform,filter] duration-200 ease-out",
+            theme === "light" ? "scale-100 opacity-100 blur-0" : "scale-75 rotate-45 opacity-0 blur-[2px]",
+          )}
+        />
+      </span>
     </button>
   );
 }

@@ -49,7 +49,7 @@ export function Industries() {
             <div className="grid items-baseline gap-2 py-6 md:grid-cols-[1fr_1.1fr] md:gap-10 md:py-7">
               <h3
                 className={cn(
-                  "display-md text-[clamp(1.75rem,3.4vw,3rem)] transition-[color,transform] duration-500 ease-out-expo",
+                  "display-md text-[clamp(1.75rem,3.4vw,3rem)] transition-[color,transform] duration-300 ease-out",
                   active === i ? "translate-x-3 text-signal [[data-theme=light]_&]:text-fg" : active !== null ? "text-fg/40" : "text-fg",
                 )}
               >
@@ -57,7 +57,7 @@ export function Industries() {
               </h3>
               <p
                 className={cn(
-                  "max-w-[46ch] text-muted transition-opacity duration-500",
+                  "max-w-[46ch] text-muted transition-opacity duration-300 ease-out",
                   active !== null && active !== i ? "md:opacity-40" : "opacity-100",
                 )}
               >
@@ -77,10 +77,9 @@ export function Industries() {
               {active !== null && (
                 <motion.div
                   key="preview"
-                  initial={{ opacity: 0, scale: 0.85, rotate: -4 }}
-                  animate={{ opacity: 1, scale: 1, rotate: -2 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  initial={{ opacity: 0, scale: 0.94, rotate: -4 }}
+                  animate={{ opacity: 1, scale: 1, rotate: -2, transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1] } }}
+                  exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.15, ease: [0.23, 1, 0.32, 1] } }}
                   className="relative -translate-x-1/2 -translate-y-[calc(100%+1.5rem)] overflow-hidden rounded-[1.25rem] bg-raise shadow-[0_30px_60px_-20px_rgb(0_0_0/0.6)] ring-1 ring-line"
                   style={{ width: 300, height: 200 }}
                 >
