@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Book a strategy call",
-  description: "Talk to a BootSoc strategist about verified B2B lead generation, ABM and intent data for the US, UK and Canada.",
+  description: "Talk to a BootSoc strategist about verified B2B lead generation, ABM and intent data. You leave with a target spec, audience size and a program plan.",
   alternates: { canonical: "/contact" },
 };
 

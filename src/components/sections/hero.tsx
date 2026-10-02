@@ -1,3 +1,4 @@
+import { Fragment } from "react";
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/button";
 import { Magnetic } from "@/components/motion/magnetic";
@@ -20,22 +21,28 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden pb-16 pt-28 md:pb-24 md:pt-36">
       <div className="shell">
+        {/* One copy of the headline: real spaces between the animated words keep textContent (what search engines
+            and screen readers get) as "Pipeline from buyers already in-market." Whitespace-only text inside a
+            flex container isn't rendered, so the spaces don't affect layout. */}
         <h1 className="display text-[clamp(2.75rem,7.2vw,7.75rem)]">
-          <span className="sr-only">Pipeline from buyers already in-market.</span>
-          <span aria-hidden="true" className="block">
-            {lines.map((line) => (
+          <span className="block">
+            {lines.map((line, li) => (
               <span key={line.join()} className="flex flex-wrap gap-x-[0.2em]">
-                {line.map((word) => {
+                {li > 0 && " "}
+                {line.map((word, wi) => {
                   const delay = i++ * 50;
                   return (
-                    <span key={word} className="inline-block overflow-hidden pb-[0.06em]">
-                      <span
-                        className={`inline-block animate-rise ${word === "in-market." ? "text-signal [[data-theme=light]_&]:bg-signal [[data-theme=light]_&]:px-[0.08em] [[data-theme=light]_&]:text-on-signal" : ""}`}
-                        style={{ animationDelay: `${delay}ms` }}
-                      >
-                        {word}
+                    <Fragment key={word}>
+                      {wi > 0 && " "}
+                      <span className="inline-block overflow-hidden pb-[0.06em]">
+                        <span
+                          className={`inline-block animate-rise ${word === "in-market." ? "text-signal [[data-theme=light]_&]:bg-signal [[data-theme=light]_&]:px-[0.08em] [[data-theme=light]_&]:text-on-signal" : ""}`}
+                          style={{ animationDelay: `${delay}ms` }}
+                        >
+                          {word}
+                        </span>
                       </span>
-                    </span>
+                    </Fragment>
                   );
                 })}
               </span>

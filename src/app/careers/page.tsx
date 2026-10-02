@@ -6,7 +6,7 @@ import { getJobs } from "@/sanity/queries";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Careers",
+  title: "Careers in B2B demand generation",
   description: "Join BootSoc's team of demand generation, data, media and SDR specialists. Remote-friendly roles across the US, UK and Canada.",
   alternates: { canonical: "/careers" },
 };

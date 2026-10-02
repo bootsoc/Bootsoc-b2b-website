@@ -9,7 +9,7 @@ import { SpotlightGroup } from "@/components/motion/spotlight";
 import { Integrations } from "@/components/sections/integrations";
 
 export const metadata: Metadata = {
-  title: "How it works",
+  title: "How our B2B lead verification process works",
   description:
     "From ICP workshop to verified delivery: how BootSoc plans, targets, verifies and optimises B2B lead generation programs.",
   alternates: { canonical: "/how-it-works" },

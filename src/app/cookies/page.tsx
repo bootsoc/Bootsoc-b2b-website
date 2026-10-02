@@ -3,8 +3,8 @@ import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { PrivacyChoicesLink } from "@/components/consent/privacy-choices-link";
 
 export const metadata: Metadata = {
-  title: "Cookie policy",
-  description: "The cookies and similar technologies BootSoc uses, why, and how to change your choices.",
+  title: "Cookie policy and consent choices",
+  description: "The cookies BootSoc uses, from strictly necessary to analytics and advertising, how consent works in each region, and how Global Privacy Control applies.",
   alternates: { canonical: "/cookies" },
 };
 

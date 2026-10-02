@@ -9,8 +9,8 @@ import { getPosts } from "@/sanity/queries";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Resources",
-  description: "Guides, playbooks and compliance explainers for B2B demand generation, intent data and ABM in the US, UK and Canada.",
+  title: "B2B demand generation guides and playbooks",
+  description: "Guides, playbooks and compliance explainers for B2B demand generation, intent data and ABM, written for teams selling in the US, UK and Canada.",
   alternates: { canonical: "/resources" },
 };
 

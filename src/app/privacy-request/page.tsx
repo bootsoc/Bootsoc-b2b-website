@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Make a privacy request",
-  description: "Access, delete, correct or opt out of the use of your personal information held by BootSoc.",
+  description: "Ask BootSoc to access, delete or correct your personal information, or to opt out of its sale, sharing or marketing use. Covers US, UK, EU and Canadian rights.",
   alternates: { canonical: "/privacy-request" },
 };
 

@@ -4,8 +4,8 @@ import { LegalPage, type LegalSection } from "@/components/legal/legal-page";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Terms of use",
-  description: "The terms that apply when you use bootsoc.com.",
+  title: "Terms of use for bootsoc.com",
+  description: "The terms for using bootsoc.com: acceptable use, intellectual property, estimates and third-party links, liability limits and Wyoming governing law.",
   alternates: { canonical: "/terms" },
 };
 

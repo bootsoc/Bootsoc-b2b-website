@@ -4,7 +4,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Accessibility statement",
-  description: "BootSoc's commitment to an accessible website that meets WCAG 2.2 AA.",
+  description: "How bootsoc.com is built to meet WCAG 2.2 AA, the accessibility features on every page, known limitations, and how to report a barrier by email.",
   alternates: { canonical: "/accessibility" },
 };
 

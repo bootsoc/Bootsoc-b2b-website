@@ -11,9 +11,9 @@ import { RevealGroup, RevealItem } from "@/components/motion/reveal";
 import { services } from "@/content/services";
 
 export const metadata: Metadata = {
-  title: "Solutions",
+  title: "B2B demand generation solutions",
   description:
-    "Content syndication, demand generation, ABM, intent data, programmatic display, event registration and appointment setting for B2B tech in the US, UK and Canada.",
+    "Content syndication, demand generation, ABM, intent data, display, event registration and appointment setting for B2B tech in the US, UK and Canada.",
   alternates: { canonical: "/solutions" },
 };
 

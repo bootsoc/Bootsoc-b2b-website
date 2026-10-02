@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/hero";
 import { LogoMarquee } from "@/components/sections/logo-marquee";
 import { Metrics } from "@/components/sections/metrics";
@@ -15,6 +16,13 @@ import { homeFaqs } from "@/content/faqs";
 import { getCaseStudies } from "@/sanity/queries";
 
 export const revalidate = 300;
+
+// Home-specific description, sized for search results (120-160 characters). site.description stays the longer
+// summary used as the site-wide default and in llms.txt.
+export const metadata: Metadata = {
+  description:
+    "Intent-led demand generation, content syndication and ABM for B2B tech companies in the US, UK and Canada. Every lead consented and human-verified.",
+};
 
 export default async function HomePage() {
   const caseStudies = await getCaseStudies();

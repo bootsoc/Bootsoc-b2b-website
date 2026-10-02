@@ -10,7 +10,7 @@ import { absoluteUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: report.title,
-  description: `${report.subtitle} Free ${report.pages}-page report with a vendor scorecard and compliance summary.`,
+  description: `${report.subtitle} Free ${report.pages}-page report with a vendor scorecard and rules summary.`,
   alternates: { canonical: "/report" },
   openGraph: { images: [{ url: "/images/report-cover.png", width: 1632, height: 2112, alt: report.title }] },
 };

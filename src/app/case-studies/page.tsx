@@ -7,8 +7,8 @@ import { getCaseStudies } from "@/sanity/queries";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
-  title: "Case studies",
-  description: "How B2B technology companies use BootSoc to build verified pipeline across the US, UK and Canada.",
+  title: "B2B demand generation case studies",
+  description: "How B2B technology companies use BootSoc content syndication, ABM and intent data programs to build verified pipeline across the US, UK and Canada.",
   alternates: { canonical: "/case-studies" },
 };
 

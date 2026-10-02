@@ -9,7 +9,7 @@ import { RevealImage } from "@/components/motion/reveal-image";
 import { secondaryMetrics, site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "About BootSoc",
+  title: "About us: verified B2B lead generation",
   description:
     "BootSoc Media LLC is a B2B demand generation and intent data agency helping technology companies build verified pipeline across the US, UK and Canada.",
   alternates: { canonical: "/about" },
