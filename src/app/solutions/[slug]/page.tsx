@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { seedPosts } from "@/content/posts";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CheckIcon } from "@phosphor-icons/react/dist/ssr";
@@ -36,6 +37,8 @@ export default async function ServicePage({ params }: PageProps<"/solutions/[slu
   const s = getService(slug);
   if (!s) notFound();
   const related = services.filter((x) => x.slug !== s.slug).slice(0, 3);
+  // Newest guides tagged for this solution (seedPosts is ordered newest first).
+  const reading = seedPosts.filter((p) => p.solutions?.includes(s.slug)).slice(0, 3);
 
   return (
     <>
@@ -161,6 +164,27 @@ export default async function ServicePage({ params }: PageProps<"/solutions/[slu
       </section>
 
       <Faq items={s.faqs} title={`${s.product ?? s.name} questions`} />
+
+      {reading.length > 0 && (
+        <section aria-labelledby="reading-heading" className="shell pt-16">
+          <h2 id="reading-heading" className="text-sm font-medium text-muted">
+            Further reading
+          </h2>
+          <ul className="mt-5 grid gap-3 md:grid-cols-3">
+            {reading.map((p) => (
+              <li key={p.slug}>
+                <Link
+                  href={`/resources/${p.slug}`}
+                  className="group block h-full rounded-[1.5rem] bg-raise p-6 ring-1 ring-line transition-[box-shadow] duration-200 ease-out hover:ring-fg/30"
+                >
+                  <span className="text-sm text-muted">{p.category}</span>
+                  <span className="mt-2 block text-lg font-medium leading-snug">{p.title}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section aria-labelledby="related-heading" className="shell py-16">
         <h2 id="related-heading" className="text-sm font-medium text-muted">

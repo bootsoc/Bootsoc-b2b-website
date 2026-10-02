@@ -1,3 +1,4 @@
+import { seedPosts } from "@/content/posts";
 import { services } from "@/content/services";
 import { site } from "@/content/site";
 import { absoluteUrl } from "@/lib/utils";
@@ -24,6 +25,11 @@ export function GET() {
     `- [Resources](${absoluteUrl("/resources")}): Guides on verified leads, intent data and compliance.`,
     `- [2026 B2B Lead Quality Report](${absoluteUrl("/report")}): Free report: 95:5 buying reality, verification standard, US/UK/Canada rules, vendor scorecard.`,
     `- [Contact](${absoluteUrl("/contact")}): Book a strategy call. Email ${site.email}.`,
+    "",
+    "## Guides",
+    ...[...seedPosts]
+      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+      .map((p) => `- [${p.title}](${absoluteUrl(`/resources/${p.slug}`)}): ${p.excerpt}`),
     "",
     "## Policies",
     `- [Privacy policy](${absoluteUrl("/privacy")})`,

@@ -1,18 +1,29 @@
 import type { PostSummary } from "@/sanity/queries";
+import { guidePosts } from "@/content/guides";
 
 export type LocalBlock =
   | { type: "p"; text: string }
   | { type: "h2"; text: string }
+  | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
   | { type: "quote"; text: string };
 
-type SeedPost = PostSummary & { localBody: LocalBlock[]; seoDescription?: string };
+/** `seoTitle` is the shorter <title> (the " | BootSoc" suffix is added by the layout); `title` stays the visible H1. */
+export type SeedPost = PostSummary & {
+  localBody: LocalBlock[];
+  seoTitle?: string;
+  seoDescription?: string;
+  /** Solution slugs this article supports; drives "Further reading" on /solutions/[slug]. */
+  solutions?: string[];
+};
 
 /** Starter articles shown until (and alongside) content published in Sanity. */
-export const seedPosts: SeedPost[] = [
+const starterPosts: SeedPost[] = [
   {
     slug: "what-makes-a-b2b-lead-verified",
     title: "What makes a B2B lead verified? A buyer's checklist",
+    seoTitle: "What makes a B2B lead verified?",
+    solutions: ["content-syndication", "demand-generation", "appointment-setting"],
     excerpt:
       "Every vendor says their leads are verified. Here are the six questions that separate a checked record from a guessed one.",
     category: "Guide",
@@ -72,6 +83,10 @@ export const seedPosts: SeedPost[] = [
   {
     slug: "b2b-email-rules-us-uk-canada",
     title: "CAN-SPAM, CASL and PECR: B2B email rules for the US, UK and Canada",
+    seoTitle: "B2B email rules: CAN-SPAM, CASL and PECR",
+    solutions: ["content-syndication", "demand-generation", "event-registration"],
+    seoDescription:
+      "One campaign, three very different laws. A plain-English guide to what CAN-SPAM, CASL and PECR require before you send B2B email in the US, Canada and UK.",
     excerpt:
       "One campaign, three very different laws. A plain-English guide to what each market requires before you hit send.",
     category: "Compliance",
@@ -149,6 +164,10 @@ export const seedPosts: SeedPost[] = [
   {
     slug: "intent-data-without-the-noise",
     title: "Intent data without the noise: turning surges into pipeline",
+    seoTitle: "Intent data without the noise",
+    solutions: ["intent-data", "account-based-marketing", "programmatic-display"],
+    seoDescription:
+      "Most intent programs fail at activation, not detection. A practical playbook for turning account-level intent signals into meetings and pipeline.",
     excerpt: "Most intent programs fail at activation, not detection. A practical playbook for acting on account-level signals.",
     category: "Playbook",
     publishedAt: "2026-08-28T09:00:00Z",
@@ -197,3 +216,5 @@ export const seedPosts: SeedPost[] = [
     ],
   },
 ];
+
+export const seedPosts: SeedPost[] = [...guidePosts, ...starterPosts];
