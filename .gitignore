@@ -49,3 +49,6 @@ next-env.d.ts
 
 # gated report PDF (stored in private Vercel Blob, not in the public repo)
 /private/
+
+# build-time sitemap dates (scripts/gen-lastmod.mjs)
+/src/generated/

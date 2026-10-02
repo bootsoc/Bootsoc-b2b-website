@@ -2,9 +2,14 @@ import type { MetadataRoute } from "next";
 import { services } from "@/content/services";
 import { getPosts } from "@/sanity/queries";
 import { absoluteUrl } from "@/lib/utils";
+// Per-route last-modified dates from git, written by scripts/gen-lastmod.mjs before dev, build and typecheck.
+import generatedLastmod from "@/generated/lastmod.json";
+
+const LAUNCH = "2026-09-30T00:00:00.000Z";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
+  const lastmod: Record<string, string> = generatedLastmod;
+  const dateFor = (route: string) => new Date(lastmod[route] ?? LAUNCH);
   const staticRoutes = [
     ["/", 1],
     ["/solutions", 0.9],
@@ -30,8 +35,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ] as const;
   const posts = await getPosts();
   return [
-    ...staticRoutes.map(([path, priority]) => ({ url: absoluteUrl(path), lastModified: now, priority })),
-    ...services.map((s) => ({ url: absoluteUrl(`/solutions/${s.slug}`), lastModified: now, priority: 0.9 })),
+    ...staticRoutes.map(([path, priority]) => ({ url: absoluteUrl(path), lastModified: dateFor(path), priority })),
+    ...services.map((s) => ({ url: absoluteUrl(`/solutions/${s.slug}`), lastModified: dateFor("/solutions/[slug]"), priority: 0.9 })),
     ...posts.map((p) => ({ url: absoluteUrl(`/resources/${p.slug}`), lastModified: new Date(p.publishedAt), priority: 0.6 })),
   ];
 }
