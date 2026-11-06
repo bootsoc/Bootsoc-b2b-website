@@ -15,7 +15,7 @@ const rows = [
   ["bs-theme (local storage)", "BootSoc", "Functional", "Remembers light or dark theme", "Until cleared"],
   ["_ga, _ga_*", "Google Analytics 4", "Analytics", "Counts visits and measures which pages help visitors", "Up to 13 months"],
   ["li_sugr, bcookie, lidc, UserMatchHistory", "LinkedIn Insight Tag", "Advertising", "Measures B2B campaign performance and builds matched audiences", "Up to 6 months"],
-  ["RB2B script and identifiers", "RB2B", "Visitor identification (loads on every visit)", "Identifies the company and, for US visitors, the professional profile of people who visit the site, so our sales team can follow up", "Set by RB2B (see RB2B's privacy policy)"],
+  ["RB2B script and identifiers", "RB2B", "Visitor identification (loads on every visit)", "Identifies the company and, for US visitors, the professional profile of people who visit the site, so our sales team can follow up", "Set by RB2B. Opt out at app.retention.com/optout"],
 ];
 
 const sections: LegalSection[] = [
@@ -70,6 +70,18 @@ const sections: LegalSection[] = [
         <li>
           <strong>United States and the rest of Canada:</strong> analytics and advertising cookies are on by default and you can switch them off
           at any time. A Global Privacy Control signal automatically turns off advertising cookies.
+        </li>
+        <li>
+          <strong>Everywhere:</strong> RB2B visitor identification runs on every visit and isn&apos;t controlled by these choices. Opt out of
+          it at{" "}
+          <a href="https://app.retention.com/optout" rel="noopener noreferrer" target="_blank">
+            app.retention.com/optout
+          </a>{" "}
+          or, under GDPR, at{" "}
+          <a href="https://www.rb2b.com/rb2b-gdpr-opt-out" rel="noopener noreferrer" target="_blank">
+            rb2b.com/rb2b-gdpr-opt-out
+          </a>
+          .
         </li>
       </ul>
     ),

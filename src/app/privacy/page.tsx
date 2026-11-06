@@ -218,6 +218,37 @@ const sections: LegalSection[] = [
     ),
   },
   {
+    id: "visitor-identification",
+    title: "Website visitor identification (RB2B)",
+    body: (
+      <>
+        {/* First paragraph is RB2B's recommended privacy policy wording, including their GDPR opt-out. */}
+        <p>
+          When you visit or log in to our website, cookies and similar technologies may be used by our online data partners or vendors to
+          associate these activities with other personal information they or others have about you, including by association with your
+          email. We (or service providers on our behalf) may then send communications and marketing to these email addresses. You may opt
+          out of receiving this advertising by visiting{" "}
+          <a href="https://app.retention.com/optout" rel="noopener noreferrer" target="_blank">
+            app.retention.com/optout
+          </a>
+          . You also have the option to opt out of the collection of your personal data in compliance with GDPR by visiting{" "}
+          <a href="https://www.rb2b.com/rb2b-gdpr-opt-out" rel="noopener noreferrer" target="_blank">
+            rb2b.com/rb2b-gdpr-opt-out
+          </a>
+          .
+        </p>
+        <p>
+          We use RB2B for this. It runs on every visit to our website, separately from your cookie choices and Global Privacy Control, so
+          please use the links above to opt out of it. Person-level identification applies to visitors in the United States. See{" "}
+          <a href="https://www.rb2b.com/privacy-policy" rel="noopener noreferrer" target="_blank">
+            RB2B&apos;s privacy policy
+          </a>{" "}
+          for how RB2B handles data.
+        </p>
+      </>
+    ),
+  },
+  {
     id: "retention",
     title: "How long we keep it",
     body: (

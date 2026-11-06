@@ -60,8 +60,9 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
                 <>
                   <h2 className="font-medium">Your cookie choices</h2>
                   <p className="mt-1.5 text-[13px] leading-snug text-muted sm:mt-2 sm:text-sm sm:leading-relaxed">
-                    We use essential cookies to run this site. With your permission we&apos;d also use analytics and
-                    advertising cookies to understand visits and measure campaigns. Nothing optional loads until you choose.{" "}
+                    We use essential cookies to run this site, and RB2B to identify visiting companies on every visit. With
+                    your permission we&apos;d also use analytics and advertising cookies to understand visits and measure
+                    campaigns.{" "}
                     <Link href="/cookies" className="underline underline-offset-2 hover:text-fg">
                       Cookie policy
                     </Link>
@@ -76,8 +77,8 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
                 <>
                   <h2 className="font-medium">Privacy notice</h2>
                   <p className="mt-1.5 text-[13px] leading-snug text-muted sm:mt-2 sm:text-sm sm:leading-relaxed">
-                    We use cookies for analytics and to measure advertising. You can opt out of the sale or sharing of
-                    personal information at any time.
+                    We use cookies for analytics and to measure advertising, and RB2B to identify visitors to our site. You
+                    can opt out of the sale or sharing of personal information at any time.
                     {consent.gpc && " We detected a Global Privacy Control signal and have turned off advertising cookies."}{" "}
                     <Link href="/privacy" className="underline underline-offset-2 hover:text-fg">
                       Privacy policy

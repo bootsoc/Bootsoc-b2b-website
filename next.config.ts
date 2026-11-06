@@ -4,12 +4,14 @@ const isDev = process.env.NODE_ENV !== "production";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://snap.licdn.com https://challenges.cloudflare.com https://va.vercel-scripts.com https://ddwl4m2hdecbv.cloudfront.net`,
+  // RB2B (ddwl4m2hdecbv.cloudfront.net) and its dependencies (b2bjsstore S3, LiveRamp *.liadm.com, ip-api, alocdn,
+  // usbrowserspeed, RB2B's API Gateway) are listed as required by RB2B's installation debugger.
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://snap.licdn.com https://challenges.cloudflare.com https://va.vercel-scripts.com https://ddwl4m2hdecbv.cloudfront.net https://b2bjsstore.s3.us-west-2.amazonaws.com https://s3-us-west-2.amazonaws.com https://liadm.com https://*.liadm.com`,
   "style-src 'self' 'unsafe-inline' https://api.fontshare.com",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data: https://cdn.fontshare.com",
-  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://px.ads.linkedin.com https://*.api.sanity.io https://*.apicdn.sanity.io https://vitals.vercel-insights.com https://challenges.cloudflare.com https://ddwl4m2hdecbv.cloudfront.net https://*.rb2b.com https://*.reb2b.com",
-  "frame-src https://challenges.cloudflare.com",
+  "connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://px.ads.linkedin.com https://*.api.sanity.io https://*.apicdn.sanity.io https://vitals.vercel-insights.com https://challenges.cloudflare.com https://ddwl4m2hdecbv.cloudfront.net https://*.rb2b.com https://*.reb2b.com https://b2bjsstore.s3.us-west-2.amazonaws.com https://pro.ip-api.com https://alocdn.com https://*.liadm.com https://9xgnrndqve.execute-api.us-west-2.amazonaws.com https://a.usbrowserspeed.com",
+  "frame-src https://challenges.cloudflare.com https://*.liadm.com",
   "frame-ancestors 'self'",
   "form-action 'self'",
   "base-uri 'self'",
