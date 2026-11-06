@@ -21,7 +21,7 @@ export const site = {
     name: "IntentBuy",
     url: "https://intentbuy.com",
   },
-  policyVersion: "2026-09-25",
+  policyVersion: "2026-11-06",
 } as const;
 
 export const metrics = [

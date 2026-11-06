@@ -8,6 +8,12 @@ import { consentStore, useConsent } from "@/components/consent/store";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const LINKEDIN_ID = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
+// RB2B website visitor identification (person-level in the US only). Treated as advertising: it loads only when
+// advertising cookies are allowed, so UK/EU/Quebec visitors must opt in and Global Privacy Control switches it off.
+// The key is public (it ships in the page source). It is enabled only on Vercel production builds so local,
+// preview and test builds never send visits to RB2B; NEXT_PUBLIC_RB2B_KEY can override it.
+const RB2B_KEY =
+  process.env.NEXT_PUBLIC_RB2B_KEY ?? (process.env.NEXT_PUBLIC_VERCEL_ENV === "production" ? "7N850HKD8JN1" : undefined);
 
 export function ConsentManager() {
   const { ready, regime, consent, prefsOpen } = useConsent();
@@ -42,6 +48,12 @@ gtag('js',new Date());gtag('config','${GA_ID}',{anonymize_ip:true});`}
         <Script id="linkedin-insight" strategy="lazyOnload">
           {`window._linkedin_partner_id="${LINKEDIN_ID}";window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
 (function(l){if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[]}var s=document.getElementsByTagName("script")[0];var b=document.createElement("script");b.type="text/javascript";b.async=true;b.src="https://snap.licdn.com/li.lms-analytics/insight.min.js";s.parentNode.insertBefore(b,s);})(window.lintrk);`}
+        </Script>
+      )}
+
+      {RB2B_KEY && ready && consent.advertising && (
+        <Script id="rb2b" strategy="lazyOnload">
+          {`!function(key){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://ddwl4m2hdecbv.cloudfront.net/b/"+key+"/"+key+".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0]);}(${JSON.stringify(RB2B_KEY)});`}
         </Script>
       )}
 

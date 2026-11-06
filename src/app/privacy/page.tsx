@@ -159,6 +159,10 @@ const sections: LegalSection[] = [
               <td>Consent (UK, EU, Quebec) or notice with opt-out (other regions)</td>
             </tr>
             <tr>
+              <td>Identify US visitors to our website, using RB2B, so our sales team can follow up</td>
+              <td>Notice with opt-out (US); consent where cookie rules require it (UK, EU, Quebec)</td>
+            </tr>
+            <tr>
               <td>Security, fraud prevention and legal compliance</td>
               <td>Legal obligation and legitimate interests</td>
             </tr>
@@ -189,7 +193,8 @@ const sections: LegalSection[] = [
             <Link href="/dpa">subprocessor list</Link>.
           </li>
           <li>
-            <strong>Advertising and analytics partners</strong>, such as Google and LinkedIn, only where your cookie choices allow.
+            <strong>Advertising, analytics and visitor identification partners</strong>, such as Google, LinkedIn and RB2B, only
+            where your cookie choices allow.
           </li>
           <li>
             <strong>Authorities and advisers</strong>, where required by law or to protect rights, safety and security.
