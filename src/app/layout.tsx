@@ -15,6 +15,8 @@ import "./globals.css";
 
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
 
+const RB2B_SNIPPET = `!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("7N850HKD8JN1");`;
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -58,6 +60,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* RB2B visitor identification, installed in the head as RB2B supplies it. */}
+        <script dangerouslySetInnerHTML={{ __html: RB2B_SNIPPET }} />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         {fonts ? (
           <>

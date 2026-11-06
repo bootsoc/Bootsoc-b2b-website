@@ -21,7 +21,7 @@ test.describe("cookie consent", () => {
   test("no analytics or ad scripts load before consent", async ({ page }) => {
     const thirdParty: string[] = [];
     page.on("request", (r) => {
-      if (/googletagmanager|google-analytics|snap\.licdn|linkedin|rb2b|ddwl4m2hdecbv/.test(r.url())) thirdParty.push(r.url());
+      if (/googletagmanager|google-analytics|snap\.licdn|linkedin/.test(r.url())) thirdParty.push(r.url());
     });
     await page.goto("/");
     await page.waitForLoadState("networkidle");

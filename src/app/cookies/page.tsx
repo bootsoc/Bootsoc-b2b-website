@@ -15,7 +15,7 @@ const rows = [
   ["bs-theme (local storage)", "BootSoc", "Functional", "Remembers light or dark theme", "Until cleared"],
   ["_ga, _ga_*", "Google Analytics 4", "Analytics", "Counts visits and measures which pages help visitors", "Up to 13 months"],
   ["li_sugr, bcookie, lidc, UserMatchHistory", "LinkedIn Insight Tag", "Advertising", "Measures B2B campaign performance and builds matched audiences", "Up to 6 months"],
-  ["RB2B script and identifiers", "RB2B", "Advertising", "Identifies the company and, for US visitors, the professional profile of people who visit the site, so our sales team can follow up", "Set by RB2B (see RB2B's privacy policy)"],
+  ["RB2B script and identifiers", "RB2B", "Visitor identification (loads on every visit)", "Identifies the company and, for US visitors, the professional profile of people who visit the site, so our sales team can follow up", "Set by RB2B (see RB2B's privacy policy)"],
 ];
 
 const sections: LegalSection[] = [
