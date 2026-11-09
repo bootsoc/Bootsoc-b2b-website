@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/footer";
 import { themeScript } from "@/components/layout/theme-toggle";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { ConsentManager } from "@/components/consent/consent-manager";
+import { RB2BRouteTracker } from "@/components/analytics/rb2b";
+import { rb2bSnippet } from "@/components/analytics/rb2b-snippet";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ScrollProgress } from "@/components/motion/scroll-progress";
 import { certifications, site } from "@/content/site";
@@ -14,8 +16,6 @@ import { getFontshareStyles } from "@/lib/fonts";
 import "./globals.css";
 
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap", preload: false });
-
-const RB2B_SNIPPET = `!function(key) {if (window.reb2b) return;window.reb2b = {loaded: true};var s = document.createElement("script");s.async = true;s.src = "https://ddwl4m2hdecbv.cloudfront.net/b/" + key + "/" + key + ".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s, document.getElementsByTagName("script")[0]);}("7N850HKD8JN1");`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -60,8 +60,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-        {/* RB2B visitor identification, installed in the head as RB2B supplies it. */}
-        <script dangerouslySetInnerHTML={{ __html: RB2B_SNIPPET }} />
+        {/* RB2B visitor identification: RB2B's documented snippet, in the head on every page. */}
+        <script dangerouslySetInnerHTML={{ __html: rb2bSnippet }} />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         {fonts ? (
           <>
@@ -108,6 +108,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         </main>
         <Footer />
         <ConsentManager />
+        <RB2BRouteTracker />
         </MotionProvider>
         <Analytics />
         <SpeedInsights />
