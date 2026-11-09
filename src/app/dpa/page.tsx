@@ -15,7 +15,9 @@ const subprocessors = [
   ["Sanity AS", "Content management for website articles and job listings", "EU / United States"],
   ["Google LLC", "Workspace email and, with consent, Google Analytics", "United States"],
   ["LinkedIn Corporation", "Campaign measurement via Insight Tag, with consent", "United States"],
-  ["Cloudflare, Inc.", "Bot protection (Turnstile) and DNS", "United States"],
+  ["Cloudflare, Inc.", "Bot protection on website forms (Turnstile)", "United States"],
+  ["Resend, Inc.", "Delivery of internal notification emails about website submissions", "United States"],
+  ["RB2B (Retention.com)", "Website visitor identification (company level; person level for US visitors)", "United States"],
 ];
 
 const sections: LegalSection[] = [
