@@ -13,6 +13,8 @@ import { TrustStrip } from "@/components/sections/trust-strip";
 import { Faq } from "@/components/sections/faq";
 import { CtaBand } from "@/components/sections/cta-band";
 import { homeFaqs } from "@/content/faqs";
+import { site } from "@/content/site";
+import { JsonLd } from "@/components/seo/json-ld";
 import { getCaseStudies } from "@/sanity/queries";
 
 export const revalidate = 300;
@@ -28,6 +30,19 @@ export default async function HomePage() {
   const caseStudies = await getCaseStudies();
   return (
     <>
+      {/* WebSite structured data on the home page is what Google uses to show "BootSoc" as the site name in results. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "@id": `${site.url}/#website`,
+          name: site.name,
+          alternateName: [site.legalName, "bootsoc.com"],
+          url: `${site.url}/`,
+          inLanguage: "en",
+          publisher: { "@type": "Organization", name: site.legalName, url: site.url },
+        }}
+      />
       <Hero />
       <LogoMarquee />
       <Metrics />
